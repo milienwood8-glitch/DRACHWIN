@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DRACHWIN accompagne les jeunes dans leur développement personnel, l'apprentissage et les activités génératrices de revenus.">
+  <title>DRACHWIN — Le pouvoir de gagner</title>
+  <style>
+    :root {
+      --navy: #101b35;
+      --gold: #f0b83c;
+      --cream: #fffaf0;
+      --green: #16794b;
+      --ink: #202b40;
+      --muted: #647087;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f7f8fc;
+      line-height: 1.6;
+    }
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 16px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand { font-size: 25px; font-weight: 900; letter-spacing: 2px; }
+    .brand span { color: var(--gold); }
+    header p { margin: 0; color: #e6e9f1; font-size: 13px; }
+    nav {
+      background: #182645;
+      padding: 12px 5%;
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+    }
+    nav a { color: white; text-decoration: none; white-space: nowrap; font-size: 14px; }
+    nav a:hover { color: var(--gold); }
+    .hero {
+      background: linear-gradient(135deg, #101b35, #1d4a49);
+      color: white;
+      padding: 65px 7%;
+      text-align: center;
+    }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+    h1 { font-size: clamp(34px, 7vw, 58px); line-height: 1.1; margin: 16px auto; }
+    .hero p { max-width: 650px; margin: 18px auto; color: #e5eaf2; }
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+      text-decoration: none;
+      margin: 8px 5px;
+    }
+    .btn-outline { background: transparent; color: white; border: 1px solid white; }
+    main { max-width: 1100px; padding: 35px 18px; margin: auto; }
+    .intro { text-align: center; max-width: 760px; margin: 0 auto 30px; }
+    .section-label { color: var(--green); font-weight: bold; letter-spacing: 2px; font-size: 12px; }
+    h2 { color: var(--navy); font-size: 30px; line-height: 1.2; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e5e9f1;
+      border-radius: 15px;
+      padding: 23px;
+      box-shadow: 0 5px 18px #101b3509;
+    }
+    .number { color: var(--green); font-weight: 900; font-size: 13px; }
+    .card h3 { margin: 8px 0; color: var(--navy); font-size: 21px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .card a { color: var(--green); font-weight: bold; text-decoration: none; }
+    .notice {
+      margin-top: 26px;
+      padding: 18px;
+      border-radius: 10px;
+      background: #fff3d3;
+      color: #61460c;
+      font-size: 13px;
+    }
+    .about {
+      background: white;
+      padding: 25px;
+      margin-top: 30px;
+      border-radius: 14px;
+    }
+    footer {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      padding: 28px 18px;
+      font-size: 13px;
+    }
+    footer p { margin: 5px; color: #d9deea; }
+    @media (max-width: 500px) {
+      header { align-items: flex-start; }
+      .hero { padding: 48px 20px; }
+      h2 { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="brand">DRACH<span>WIN</span></div>
+      <p>Le pouvoir de gagner</p>
+    </div>
+    <a class="btn" href="#espaces">Découvrir DRACHWIN</a>
+  </header>
+
+  <nav aria-label="Navigation principale">
+    <a href="#accueil">Accueil</a>
+    <a href="#start">START</a>
+    <a href="#business">BUSINESS</a>
+    <a href="#bibliotheque">BIBLIOTHÈQUE</a>
+    <a href="#sell">SELL</a>
+    <a href="#goal">GOAL</a>
+  </nav>
+
+  <section class="hero" id="accueil">
+    <div class="eyebrow">Une vision · Des objectifs · Des actions</div>
+    <h1>Ton potentiel mérite<br>de devenir une réalité.</h1>
+    <p>DRACHWIN est un projet tourné vers les jeunes, conçu pour encourager le développement personnel, l'apprentissage, l'esprit d'initiative et la découverte d'activités génératrices de revenus.</p>
+    <a class="btn" href="#espaces">Explorer nos espaces</a>
+    <a class="btn btn-outline" href="#apropos">Qui sommes-nous ?</a>
+  </section>
+
+  <main>
+    <section class="intro" id="espaces">
+      <div class="section-label">NOS CINQ ESPACES</div>
+      <h2>Construis ton prochain objectif</h2>
+      <p>Découvre les cinq composantes prévues dans le programme DRACHWIN. Certaines fonctionnalités nécessitent encore une mise en place avant de pouvoir être utilisées.</p>
+    </section>
+
+    <section class="cards">
+      <article class="card" id="start">
+        <div class="number">ESPACE 01</div>
+        <h3>DRACHWIN_START</h3>
+        <p>Apprends à mieux te connaître, à renforcer ta confiance et à définir des objectifs concrets avec une orientation adaptée à tes besoins.</p>
+        <a href="#contact">En savoir plus →</a>
+      </article>
+
+      <article class="card" id="business">
+        <div class="number">ESPACE 02</div>
+        <h3>DRACHWIN_BUSINESS</h3>
+        <p>Découvre les bases de l'entrepreneuriat, de l'organisation des projets et de la gestion responsable des revenus.</p>
+        <a href="#contact">En savoir plus →</a>
+      </article>
+
+      <article class="card" id="bibliotheque">
+        <div class="number">ESPACE 03</div>
+        <h3>DRACHWIN_BIBLIOTHÈQUE</h3>
+        <p>Un espace envisagé pour faciliter l'accès aux ressources éducatives et aux livres numériques dans le respect des droits d'auteur.</p>
+        <a href="#contact">En savoir plus →</a>
+      </article>
+
+      <article class="card" id="sell">
+        <div class="number">ESPACE 04</div>
+        <h3>DRACHWIN_SELL</h3>
+        <p>Découvre le principe des activités commerciales avec des partenaires et les compétences nécessaires pour vendre des produits.</p>
+        <a href="#contact">En savoir plus →</a>
+      </article>
+
+      <article class="card" id="goal">
+        <div class="number">ESPACE 05</div>
+        <h3>DRACHWIN_GOAL</h3>
+        <p>Un espace prévu pour présenter des objectifs, des actions à accomplir et des récompenses éducatives à vérifier.</p>
+        <a href="#contact">En savoir plus →</a>
+      </article>
+    </section>
+
+    <div class="notice">
+      <strong>Information importante :</strong> ce site présente le projet DRACHWIN. Les comptes membres, les récompenses en Coins, les paiements, les commissions et les mécanismes de réseau ne sont pas encore activés. Toute activité financière ou de recrutement devra être examinée avant son lancement.
+    </div>
+
+    <section class="about" id="apropos">
+      <div class="section-label">NOTRE VISION</div>
+      <h2>Accompagner les jeunes vers des actions concrètes</h2>
+      <p>Créé en 2025, DRACHWIN souhaite aider les jeunes de 15 à 30 ans à clarifier leurs objectifs, à développer leurs capacités et à explorer des possibilités concrètes d'apprentissage et d'activité économique.</p>
+      <p>Notre devise : <strong>Le pouvoir de gagner.</strong></p>
+    </section>
+
+    <section class="about" id="contact">
+      <div class="section-label">CONTACT</div>
+      <h2>Une question ou une suggestion ?</h2>
+      <p>Les moyens de contact officiels seront ajoutés ici après leur validation.</p>
+      <p><strong>DRACHWIN — Le pouvoir de gagner</strong></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand">DRACH<span>WIN</span></div>
+    <p>Le pouvoir de gagner</p>
+    <p>© 2026 DRACHWIN. Tous droits réservés.</p>
+    <p>Projet en cours de développement.</p>
+  </footer>
+</body>
+  </html>
+  
