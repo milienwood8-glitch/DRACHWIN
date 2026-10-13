@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inscription et connexion | DRACHWIN</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#18233b}
+header{background:#101b35;color:white;text-align:center;padding:24px}
+.logo{font-size:30px;font-weight:900;letter-spacing:3px;color:#efc15f}
+main{max-width:500px;margin:30px auto;padding:0 16px}
+.card{background:white;padding:24px;border-radius:14px;box-shadow:0 4px 14px #00000010}
+.tabs{display:flex;gap:10px;margin-bottom:22px}
+.tab{flex:1;padding:12px;border:0;border-radius:8px;background:#e7ebf2;font-weight:bold}
+.tab.active{background:#efc15f;color:#101b35}
+label{display:block;margin:14px 0 6px;font-weight:bold}
+input,select{width:100%;padding:13px;border:1px solid #ccd2dd;border-radius:8px;font-size:16px}
+.submit{width:100%;border:0;background:#101b35;color:white;padding:14px;border-radius:8px;font-size:16px;font-weight:bold;margin-top:20px}
+.note{font-size:13px;color:#596579;line-height:1.6}
+footer{text-align:center;background:#101b35;color:white;padding:20px;margin-top:30px}
+a{color:#173d59}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DRACHWIN</div>
+  <p>REJOINS NOTRE COMMUNAUTÉ</p>
+</header>
+<main>
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="registerTab" type="button" onclick="showForm('register')">S'inscrire</button>
+      <button class="tab" id="loginTab" type="button" onclick="showForm('login')">Se connecter</button>
+    </div>
+
+    <form id="registerForm" onsubmit="demo(event,'inscription')">
+      <h1>Créer un compte</h1>
+      <label for="fullname">Nom complet</label>
+      <input id="fullname" name="fullname" autocomplete="name" required placeholder="Ton nom complet">
+
+      <label for="email">Adresse e-mail</label>
+      <input id="email" name="email" type="email" autocomplete="email" required placeholder="exemple@email.com">
+
+      <label for="phone">Téléphone / WhatsApp</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+509 ...">
+
+      <label for="age">Tranche d'âge</label>
+      <select id="age" name="age" required>
+        <option value="">Choisis ta tranche d'âge</option>
+        <option>Moins de 15 ans</option>
+        <option>15 à 17 ans</option>
+        <option>18 à 30 ans</option>
+        <option>Plus de 30 ans</option>
+      </select>
+
+      <label for="password">Mot de passe souhaité</label>
+      <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required placeholder="Au moins 8 caractères">
+
+      <p class="note">N'utilise pas un mot de passe que tu utilises déjà ailleurs. Ce formulaire est une maquette et n'enregistre pas encore ton compte.</p>
+      <button class="submit" type="submit">Créer mon compte</button>
+    </form>
+
+    <form id="loginForm" hidden onsubmit="demo(event,'connexion')">
+      <h1>Content de te revoir !</h1>
+      <label for="loginEmail">Adresse e-mail</label>
+      <input id="loginEmail" type="email" autocomplete="email" required placeholder="Ton adresse e-mail">
+
+      <label for="loginPassword">Mot de passe</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Ton mot de passe">
+
+      <p class="note">La connexion réelle sera disponible après la mise en place d'un système sécurisé.</p>
+      <button class="submit" type="submit">Se connecter</button>
+    </form>
+
+    <p id="message" role="status" aria-live="polite"></p>
+    <p class="note">En continuant, tu reconnais que les conditions d'utilisation et la politique de confidentialité devront être consultées avant le lancement officiel.</p>
+  </div>
+  <p style="text-align:center"><a href="programmes.html">← Retour aux programmes</a></p>
+</main>
+<footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+<script>
+function showForm(type){
+  const registering=type==='register';
+  document.getElementById('registerForm').hidden=!registering;
+  document.getElementById('loginForm').hidden=registering;
+  document.getElementById('registerTab').classList.toggle('active',registering);
+  document.getElementById('loginTab').classList.toggle('active',!registering);
+  document.getElementById('message').textContent='';
+}
+function demo(event,type){
+  event.preventDefault();
+  document.getElementById('message').textContent=
+    'Cette maquette ne transmet ni ne sauvegarde tes données. Le système de compte sécurisé reste à installer.';
+}
+</script>
+</body>
+</html>
