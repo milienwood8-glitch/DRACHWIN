@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROGRAM WIN | DRACHWIN</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#18233b}
+header{background:#101b35;color:white;text-align:center;padding:24px}
+.logo{font-size:30px;font-weight:900;letter-spacing:3px;color:#efc15f}
+main{max-width:750px;margin:auto;padding:30px 18px;line-height:1.8}
+.intro{text-align:center}
+.card{background:white;padding:23px;margin:20px 0;border-radius:14px;box-shadow:0 4px 14px #00000010}
+h2{color:#173d59}
+.btn{display:block;text-align:center;background:#efc15f;color:#101b35;text-decoration:none;padding:14px;border-radius:8px;font-weight:bold;margin-top:18px}
+.notice{background:#fff3d5;padding:15px;border-radius:8px}
+footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:30px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DRACHWIN</div>
+  <p>PROGRAM WIN — ENTREPRENDRE ET PROGRESSER</p>
+</header>
+<main>
+  <div class="intro">
+    <h1>Bienvenue dans PROGRAM WIN</h1>
+    <p>Découvre DRACHWIN BUSINESS, un programme destiné à présenter des possibilités d'activités commerciales et un système de progression encadré.</p>
+  </div>
+
+  <div class="card">
+    <h2>DRACHWIN BUSINESS</h2>
+    <p>Le programme prévoit notamment :</p>
+    <ul>
+      <li>Un système de niveaux et de tableaux.</li>
+      <li>Des règles de fonctionnement et de répartition à consulter avant toute participation.</li>
+      <li>Des possibilités de vente directe de produits de partenaires commerciaux.</li>
+      <li>Un cadre destiné à soutenir des initiatives et des activités concrètes.</li>
+    </ul>
+    <p>La participation ne garantit aucun revenu. Les conditions doivent être comprises avant toute activation.</p>
+  </div>
+
+  <div class="card">
+    <h2>Activation du compte BUSINESS</h2>
+    <p>La procédure d'activation sera ouverte lorsque le système d'inscription, de sécurité, de paiement et les conditions juridiques auront été vérifiés.</p>
+    <div class="notice">
+      <strong>Important :</strong> cette page est informative. Elle ne reçoit aucun paiement et n'active pas encore de compte.
+    </div>
+    <a class="btn" href="inscription.html">Créer un compte / Se connecter</a>
+  </div>
+
+  <p style="text-align:center"><a href="programmes.html">← Retour aux programmes</a></p>
+</main>
+<footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+</body>
+</html>
