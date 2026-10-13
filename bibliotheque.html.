@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRACHWIN BIBLIOTHÈQUE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#18233b}
+header{background:#101b35;color:white;text-align:center;padding:25px}
+.logo{font-size:30px;font-weight:900;letter-spacing:3px;color:#efc15f}
+main{max-width:800px;margin:auto;padding:25px 18px;line-height:1.8}
+.hero{text-align:center}
+.card{background:white;padding:22px;margin:18px 0;border-radius:13px;box-shadow:0 4px 14px #00000010}
+.book{border-left:5px solid #efc15f}
+.coins{display:inline-block;background:#e8f2eb;color:#176b45;padding:6px 12px;border-radius:20px;font-weight:bold}
+.note{background:#fff3d5;padding:15px;border-radius:8px}
+.btn{display:inline-block;background:#efc15f;color:#101b35;text-decoration:none;padding:13px 18px;border-radius:8px;font-weight:bold}
+footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:25px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DRACHWIN</div>
+  <p>BIBLIOTHÈQUE — APPRENDRE POUR GRANDIR</p>
+</header>
+<main>
+  <div class="hero">
+    <h1>DRACHWIN BIBLIOTHÈQUE</h1>
+    <p>La lecture est un moyen de développer ses connaissances, ses compétences et ses ambitions.</p>
+  </div>
+
+  <div class="card">
+    <h2>Notre objectif</h2>
+    <p>Mettre des ressources numériques à la disposition des membres afin de favoriser l'apprentissage, la culture générale et le développement personnel.</p>
+    <p>Les livres PDF disponibles seront proposés selon le catalogue et les autorisations de distribution obtenues.</p>
+  </div>
+
+  <div class="card book">
+    <h2>📘 Livre de niveau court</h2>
+    <p>Pour les lectures courtes et les premières découvertes.</p>
+    <span class="coins">4 DRACHWIN Coins</span>
+  </div>
+
+  <div class="card book">
+    <h2>📗 Livre de niveau intermédiaire</h2>
+    <p>Pour approfondir un sujet et développer ses connaissances.</p>
+    <span class="coins">6 DRACHWIN Coins</span>
+  </div>
+
+  <div class="card book">
+    <h2>📙 Livre spécialisé</h2>
+    <p>Pour explorer un thème précis ou acquérir des connaissances ciblées.</p>
+    <span class="coins">10 DRACHWIN Coins</span>
+  </div>
+
+  <div class="card book">
+    <h2>📕 Livre à forte valeur éducative</h2>
+    <p>Pour des ressources approfondies selon le catalogue disponible.</p>
+    <span class="coins">15 DRACHWIN Coins</span>
+  </div>
+
+  <div class="card">
+    <h2>Comment recevoir un livre ?</h2>
+    <ol>
+      <li>Consulte le catalogue qui sera publié par l'équipe DRACHWIN.</li>
+      <li>Vérifie le nombre de Coins demandé pour le livre choisi.</li>
+      <li>Soumets ta demande via le système officiel lorsqu'il sera disponible.</li>
+      <li>Après validation, le PDF autorisé sera envoyé à l'adresse e-mail fournie, selon la procédure prévue.</li>
+    </ol>
+    <div class="note"><strong>Information :</strong> la livraison annoncée dans le projet est prévue dans un délai de 24 heures après validation. La demande de livre et la livraison automatiques ne sont pas encore activées sur cette page.</div>
+  </div>
+
+  <div class="card">
+    <h2>Respect des droits d'auteur</h2>
+    <p>DRACHWIN proposera uniquement des livres dont la distribution est autorisée, des œuvres libres de droits ou des ressources utilisées avec la permission de leurs titulaires.</p>
+  </div>
+
+  <p style="text-align:center"><a class="btn" href="goal.html">Découvrir DRACHWIN GOAL</a></p>
+  <p style="text-align:center"><a href="free.html">← Retour à PROGRAM FREE</a></p>
+</main>
+<footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+</body>
+</html>
