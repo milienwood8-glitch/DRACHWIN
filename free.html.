@@ -2,49 +2,130 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PROGRAM FREE | DRACHWIN</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#18233b}
-header{background:#101b35;color:white;text-align:center;padding:24px}
-.logo{font-size:30px;font-weight:900;letter-spacing:3px;color:#efc15f}
-main{max-width:750px;margin:auto;padding:30px 18px}
-.intro{text-align:center;line-height:1.8}
-.card{background:white;padding:23px;margin:20px 0;border-radius:14px;box-shadow:0 4px 14px #00000010}
-.card h2{color:#173d59}
-.btn{display:inline-block;background:#efc15f;color:#101b35;text-decoration:none;padding:13px 18px;border-radius:8px;font-weight:bold}
-footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:30px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b35">
+  <title>PROGRAM FREE | DRACHWIN</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      color: #18233b;
+    }
+    header, footer {
+      background: #101b35;
+      color: white;
+      text-align: center;
+      padding: 22px 15px;
+    }
+    .logo {
+      color: #efc15f;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    main {
+      max-width: 760px;
+      margin: auto;
+      padding: 25px 16px;
+    }
+    .hero {
+      background: linear-gradient(140deg, #101b35, #284b59);
+      color: white;
+      text-align: center;
+      padding: 32px 20px;
+      border-radius: 14px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      margin: 18px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px #00000010;
+    }
+    h2 { color: #173d59; }
+    p { line-height: 1.7; }
+    .btn {
+      display: block;
+      padding: 14px;
+      margin-top: 14px;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      background: #efc15f;
+      color: #101b35;
+    }
+    .secondary {
+      background: #101b35;
+      color: white;
+    }
+    .back {
+      display: block;
+      text-align: center;
+      margin: 25px 0;
+      color: #173d59;
+    }
+    footer { margin-top: 25px; }
+  </style>
 </head>
 <body>
-<header>
-  <div class="logo">DRACHWIN</div>
-  <p>PROGRAM FREE — APPRENDRE ET PROGRESSER</p>
-</header>
-<main>
-  <div class="intro">
-    <h1>Bienvenue dans PROGRAM FREE</h1>
-    <p>Développe tes capacités, avance vers tes objectifs et découvre des ressources éducatives avec DRACHWIN.</p>
-  </div>
+  <header>
+    <div class="logo">DRACHWIN</div>
+    <p>PROGRAM FREE — APPRENDRE ET PROGRESSER</p>
+  </header>
 
-  <div class="card">
-    <h2>DRACHWIN START</h2>
-    <p>Apprends à mieux te connaître, définis tes objectifs et développe ta confiance, ta discipline et tes compétences.</p>
-    <a class="btn" href="start.html">Découvrir DRACHWIN START</a>
-  </div>
+  <main>
+    <section class="hero">
+      <h1>Bienvenue dans PROGRAM FREE</h1>
+      <p>
+        Développe tes capacités, fixe tes objectifs et découvre
+        des ressources éducatives pour avancer avec DRACHWIN.
+      </p>
+    </section>
 
-  <div class="card">
-    <h2>DRACHWIN GOAL</h2>
-    <p>Découvre les activités proposées et les missions éducatives permettant de gagner des DRACHWIN Coins après vérification.</p>
-    <a class="btn" href="goal.html">Découvrir DRACHWIN GOAL</a>
-  </div>
+    <section class="card">
+      <h2>DRACHWIN START</h2>
+      <p>
+        Apprends à mieux te connaître, développe ta confiance,
+        organise tes objectifs et construis de bonnes habitudes.
+      </p>
+      <a class="btn" href="/start.html">
+        Découvrir DRACHWIN START
+      </a>
+    </section>
 
-  <div class="card">
-    <h2>DRACHWIN BIBLIOTHÈQUE</h2>
-    <p>Explore une bibliothèque de livres numériques et découvre le système de récompenses éducatives en DRACHWIN Coins.</p>
-    <a class="btn" href="bibliotheque.html">Découvrir la bibliothèque</a>
-  </div>
+    <section class="card">
+      <h2>DRACHWIN GOAL</h2>
+      <p>
+        Découvre les missions éducatives et les règles
+        d'attribution des DRACHWIN Coins après vérification.
+      </p>
+      <a class="btn secondary" href="/goal.html">
+        Découvrir DRACHWIN GOAL
+      </a>
+    </section>
 
-  <p style="text-align:center"><a href="/programmes.html">← Retour aux programmes</a></p>
+    <section class="card">
+      <h2>DRACHWIN BIBLIOTHÈQUE</h2>
+      <p>
+        Découvre les ressources et les livres numériques
+        proposés dans le cadre du programme.
+      </p>
+      <a class="btn" href="/bibliotheque.html">
+        Accéder à la bibliothèque
+      </a>
+    </section>
+
+    <a class="back" href="/programmes.html">
+      ← Retour aux programmes
+    </a>
+  </main>
+
+  <footer>
+    © 2026 DRACHWIN — Le pouvoir de gagner
+  </footer>
+</body>
+</html>
