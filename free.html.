@@ -47,8 +47,4 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
     <a class="btn" href="bibliotheque.html">Découvrir la bibliothèque</a>
   </div>
 
-  <p style="text-align:center"><a href="programmes.html">← Retour aux programmes</a></p>
-</main>
-<footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
-</body>
-</html>
+  <p style="text-align:center"><a href="/programmes.html">← Retour aux programmes</a></p>
