@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DRACHWIN START</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6fa;color:#18233b}
+header{background:#101b35;color:white;text-align:center;padding:25px}
+.logo{font-size:30px;font-weight:900;letter-spacing:3px;color:#efc15f}
+main{max-width:750px;margin:auto;padding:25px 18px;line-height:1.8}
+.hero{text-align:center;padding:15px 0}
+.card{background:white;padding:22px;margin:18px 0;border-radius:13px;box-shadow:0 4px 14px #00000010}
+h2{color:#173d59}
+.btn{display:inline-block;background:#efc15f;color:#101b35;text-decoration:none;padding:13px 18px;border-radius:8px;font-weight:bold}
+label{display:block;font-weight:bold;margin:18px 0 8px}
+select{width:100%;padding:12px;border:1px solid #ccd2dd;border-radius:8px;font-size:16px}
+button{background:#101b35;color:white;border:0;border-radius:8px;padding:13px 18px;font-weight:bold;margin-top:18px}
+#result{background:#e8f2eb;padding:15px;border-radius:8px;margin-top:15px}
+footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:25px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">DRACHWIN</div>
+  <p>START — CONNAIS-TOI, FIXE TES OBJECTIFS, AVANCE</p>
+</header>
+<main>
+  <div class="hero">
+    <h1>Bienvenue dans DRACHWIN START</h1>
+    <p>Chaque réussite commence par une décision, un objectif clair et des actions régulières.</p>
+  </div>
+
+  <div class="card">
+    <h2>Notre mission</h2>
+    <p>DRACHWIN START vise à aider les jeunes à mieux se connaître, à développer leur confiance en eux et à transformer leurs idées en objectifs concrets.</p>
+  </div>
+
+  <div class="card">
+    <h2>Les piliers du programme</h2>
+    <ul>
+      <li><strong>Confiance en soi :</strong> apprendre à reconnaître ses capacités.</li>
+      <li><strong>Définition des objectifs :</strong> savoir ce que l'on veut accomplir.</li>
+      <li><strong>Discipline :</strong> organiser son temps et agir régulièrement.</li>
+      <li><strong>Passage à l'action :</strong> établir des étapes simples et réalistes.</li>
+      <li><strong>Accompagnement :</strong> préparer un parcours adapté aux besoins du participant.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Mini-test d'orientation</h2>
+    <p>Réponds à ces questions pour découvrir un premier conseil. Ce test est indicatif et ne remplace pas un accompagnement personnalisé.</p>
+
+    <form id="test">
+      <label for="goal">Quel est ton objectif principal ?</label>
+      <select id="goal" required>
+        <option value="">Choisis une réponse</option>
+        <option value="confiance">Développer ma confiance en moi</option>
+        <option value="objectif">Définir mes objectifs</option>
+        <option value="discipline">Améliorer ma discipline</option>
+        <option value="projet">Lancer un projet concret</option>
+      </select>
+
+      <label for="challenge">Qu'est-ce qui te bloque le plus ?</label>
+      <select id="challenge" required>
+        <option value="">Choisis une réponse</option>
+        <option value="doute">Le manque de confiance</option>
+        <option value="direction">Le manque de direction</option>
+        <option value="temps">Le manque d'organisation</option>
+        <option value="moyens">Le manque de moyens ou de soutien</option>
+      </select>
+
+      <button type="submit">Obtenir mon premier conseil</button>
+    </form>
+
+    <div id="result" hidden aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2>La prochaine étape</h2>
+    <p>Note un objectif que tu veux atteindre, écris trois actions possibles et choisis une première action à réaliser cette semaine.</p>
+    <a class="btn" href="goal.html">Découvrir DRACHWIN GOAL</a>
+  </div>
+
+  <p style="text-align:center"><a href="free.html">← Retour à PROGRAM FREE</a></p>
+</main>
+<footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+<script>
+document.getElementById('test').addEventListener('submit',function(event){
+  event.preventDefault();
+  const goal=document.getElementById('goal').value;
+  const challenge=document.getElementById('challenge').value;
+  const advice={
+    confiance:'Commence par noter trois qualités et une petite réussite personnelle. Travaille un objectif simple à la fois.',
+    objectif:'Écris un objectif précis, une date réaliste et trois étapes pour commencer.',
+    discipline:'Choisis une action de 15 minutes par jour et note tes progrès chaque semaine.',
+    projet:'Décris ton idée, les personnes qu’elle pourrait aider et la plus petite façon de la tester.'
+  };
+  const extra={
+    doute:'Avance par petites étapes et demande un retour à une personne de confiance.',
+    direction:'Classe tes priorités et choisis une seule tâche importante pour commencer.',
+    temps:'Prépare chaque soir une courte liste de trois priorités pour le lendemain.',
+    moyens:'Identifie les ressources gratuites et les personnes fiables qui pourraient t’orienter.'
+  };
+  const result=document.getElementById('result');
+  result.innerHTML='<strong>Ton premier conseil :</strong><p>'+advice[goal]+'</p><p>'+extra[challenge]+'</p>';
+  result.hidden=false;
+});
+</script>
+</body>
+</html>
