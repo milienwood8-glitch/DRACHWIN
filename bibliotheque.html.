@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,10 +20,12 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">DRACHWIN</div>
   <p>BIBLIOTHÈQUE — APPRENDRE POUR GRANDIR</p>
 </header>
+
 <main>
   <div class="hero">
     <h1>DRACHWIN BIBLIOTHÈQUE</h1>
@@ -69,7 +70,9 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
       <li>Soumets ta demande via le système officiel lorsqu'il sera disponible.</li>
       <li>Après validation, le PDF autorisé sera envoyé à l'adresse e-mail fournie, selon la procédure prévue.</li>
     </ol>
-    <div class="note"><strong>Information :</strong> la livraison annoncée dans le projet est prévue dans un délai de 24 heures après validation. La demande de livre et la livraison automatiques ne sont pas encore activées sur cette page.</div>
+    <div class="note">
+      <strong>Information :</strong> la livraison annoncée dans le projet est prévue dans un délai de 24 heures après validation. La demande de livre et la livraison automatiques ne sont pas encore activées sur cette page.
+    </div>
   </div>
 
   <div class="card">
@@ -77,9 +80,16 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
     <p>DRACHWIN proposera uniquement des livres dont la distribution est autorisée, des œuvres libres de droits ou des ressources utilisées avec la permission de leurs titulaires.</p>
   </div>
 
-  <p style="text-align:center"><a class="btn" href="goal.html">Découvrir DRACHWIN GOAL</a></p>
-  <p style="text-align:center"><a href="free.html">← Retour à PROGRAM FREE</a></p>
+  <p style="text-align:center">
+    <a class="btn" href="objectif.html">Découvrir DRACHWIN GOAL</a>
+  </p>
+
+  <p style="text-align:center">
+    <a href="gratuit.html">← Retour à PROGRAM FREE</a>
+  </p>
 </main>
+
 <footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+
 </body>
 </html>
