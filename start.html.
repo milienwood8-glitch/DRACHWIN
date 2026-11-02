@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,10 +22,12 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">DRACHWIN</div>
   <p>START — CONNAIS-TOI, FIXE TES OBJECTIFS, AVANCE</p>
 </header>
+
 <main>
   <div class="hero">
     <h1>Bienvenue dans DRACHWIN START</h1>
@@ -81,33 +82,42 @@ footer{background:#101b35;color:white;text-align:center;padding:20px;margin-top:
   <div class="card">
     <h2>La prochaine étape</h2>
     <p>Note un objectif que tu veux atteindre, écris trois actions possibles et choisis une première action à réaliser cette semaine.</p>
-    <a class="btn" href="goal.html">Découvrir DRACHWIN GOAL</a>
+    <a class="btn" href="objectif.html">Découvrir DRACHWIN GOAL</a>
   </div>
 
-  <p style="text-align:center"><a href="free.html">← Retour à PROGRAM FREE</a></p>
+  <p style="text-align:center">
+    <a href="gratuit.html">← Retour à PROGRAM FREE</a>
+  </p>
 </main>
+
 <footer>© 2026 DRACHWIN — Le pouvoir de gagner</footer>
+
 <script>
 document.getElementById('test').addEventListener('submit',function(event){
   event.preventDefault();
+
   const goal=document.getElementById('goal').value;
   const challenge=document.getElementById('challenge').value;
+
   const advice={
     confiance:'Commence par noter trois qualités et une petite réussite personnelle. Travaille un objectif simple à la fois.',
     objectif:'Écris un objectif précis, une date réaliste et trois étapes pour commencer.',
     discipline:'Choisis une action de 15 minutes par jour et note tes progrès chaque semaine.',
     projet:'Décris ton idée, les personnes qu’elle pourrait aider et la plus petite façon de la tester.'
   };
+
   const extra={
     doute:'Avance par petites étapes et demande un retour à une personne de confiance.',
     direction:'Classe tes priorités et choisis une seule tâche importante pour commencer.',
     temps:'Prépare chaque soir une courte liste de trois priorités pour le lendemain.',
     moyens:'Identifie les ressources gratuites et les personnes fiables qui pourraient t’orienter.'
   };
+
   const result=document.getElementById('result');
   result.innerHTML='<strong>Ton premier conseil :</strong><p>'+advice[goal]+'</p><p>'+extra[challenge]+'</p>';
   result.hidden=false;
 });
 </script>
+
 </body>
 </html>
