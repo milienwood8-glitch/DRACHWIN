@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,29 +7,34 @@
   <title>PROGRAM FREE | DRACHWIN</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f4f6fa;
       color: #18233b;
     }
+
     header, footer {
       background: #101b35;
       color: white;
       text-align: center;
       padding: 22px 15px;
     }
+
     .logo {
       color: #efc15f;
       font-size: 30px;
       font-weight: 900;
       letter-spacing: 3px;
     }
+
     main {
       max-width: 760px;
       margin: auto;
       padding: 25px 16px;
     }
+
     .hero {
       background: linear-gradient(140deg, #101b35, #284b59);
       color: white;
@@ -38,6 +42,7 @@
       padding: 32px 20px;
       border-radius: 14px;
     }
+
     .card {
       background: white;
       padding: 22px;
@@ -45,8 +50,11 @@
       border-radius: 12px;
       box-shadow: 0 4px 14px #00000010;
     }
+
     h2 { color: #173d59; }
+
     p { line-height: 1.7; }
+
     .btn {
       display: block;
       padding: 14px;
@@ -58,26 +66,32 @@
       background: #efc15f;
       color: #101b35;
     }
+
     .secondary {
       background: #101b35;
       color: white;
     }
+
     .back {
       display: block;
       text-align: center;
       margin: 25px 0;
       color: #173d59;
     }
+
     footer { margin-top: 25px; }
   </style>
 </head>
+
 <body>
+
   <header>
     <div class="logo">DRACHWIN</div>
     <p>PROGRAM FREE — APPRENDRE ET PROGRESSER</p>
   </header>
 
   <main>
+
     <section class="hero">
       <h1>Bienvenue dans PROGRAM FREE</h1>
       <p>
@@ -92,7 +106,7 @@
         Apprends à mieux te connaître, développe ta confiance,
         organise tes objectifs et construis de bonnes habitudes.
       </p>
-      <a class="btn" href="/start.html">
+      <a class="btn" href="/début.html">
         Découvrir DRACHWIN START
       </a>
     </section>
@@ -103,7 +117,7 @@
         Découvre les missions éducatives et les règles
         d'attribution des DRACHWIN Coins après vérification.
       </p>
-      <a class="btn secondary" href="/goal.html">
+      <a class="btn secondary" href="/objectif.html">
         Découvrir DRACHWIN GOAL
       </a>
     </section>
@@ -114,7 +128,7 @@
         Découvre les ressources et les livres numériques
         proposés dans le cadre du programme.
       </p>
-      <a class="btn" href="/bibliotheque.html">
+      <a class="btn" href="/bibliothèque.html">
         Accéder à la bibliothèque
       </a>
     </section>
@@ -122,10 +136,12 @@
     <a class="back" href="/programmes.html">
       ← Retour aux programmes
     </a>
+
   </main>
 
   <footer>
     © 2026 DRACHWIN — Le pouvoir de gagner
   </footer>
+
 </body>
 </html>
