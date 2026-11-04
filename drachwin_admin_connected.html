@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DRACHWIN — Tableau de bord administratif</title>
+<style>
+:root{--navy:#101d35;--blue:#2457d6;--bg:#f3f6fb;--ink:#17243a;--muted:#718096;--line:#e5eaf2;--green:#15966a;--red:#c34444;--amber:#a66a0a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Arial,sans-serif}.app{display:flex;min-height:100vh}
+aside{width:245px;background:var(--navy);color:#fff;padding:23px 15px;flex-shrink:0}.brand{font-size:21px;font-weight:800;letter-spacing:1px;padding:5px 12px 28px}.brand small{display:block;font-size:10px;color:#aab8d0;letter-spacing:2px;margin-top:5px}.group{font-size:10px;color:#8292ad;text-transform:uppercase;letter-spacing:1.4px;padding:14px 12px 7px}
+nav button{width:100%;border:0;background:transparent;color:#c7d2e4;text-align:left;padding:11px 12px;border-radius:8px;margin:2px 0;cursor:pointer;font-size:13px}nav button:hover,nav button.active{background:#263b5e;color:white}nav button span{display:inline-block;width:25px}
+.aside-note{margin:30px 12px 0;color:#9cabc2;font-size:11px;line-height:1.6}
+main{flex:1;min-width:0}.top{height:68px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px}.top small{color:var(--muted)}.admin{background:#edf2ff;color:var(--blue);padding:9px 12px;border-radius:20px;font-size:11px;font-weight:bold}
+.content{padding:27px;max-width:1450px;margin:auto}.page{display:none}.page.active{display:block}.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:22px}h1{font-size:25px;margin:0 0 6px}.muted{color:var(--muted);font-size:12px}.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.card,.panel{background:white;border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:0 3px 12px #1c355008}.kpi-label{color:var(--muted);font-size:12px}.kpi{font-size:27px;font-weight:750;margin:12px 0 4px}.panel{margin-bottom:16px}.panel-title{font-weight:700;margin:0 0 14px;font-size:14px}
+.grid2{display:grid;grid-template-columns:1.3fr 1fr;gap:15px}.bars{height:165px;display:flex;align-items:end;gap:13px;border-bottom:1px solid var(--line);padding:8px}.barcol{flex:1;text-align:center;color:var(--muted);font-size:10px}.bar{margin:0 auto 7px;width:27px;background:linear-gradient(180deg,#4e7df0,#2457d6);border-radius:5px 5px 0 0}
+.btn{border:0;border-radius:7px;padding:9px 12px;font-weight:650;font-size:12px;cursor:pointer;background:var(--blue);color:#fff}.btn:hover{filter:brightness(.96)}.btn.light{background:#edf2ff;color:var(--blue)}.btn.good{background:#e7f6ef;color:var(--green)}.btn.bad{background:#fff0f0;color:var(--red)}.btn.warn{background:#fff5e3;color:var(--amber)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 15px}.tab{border:1px solid var(--line);background:white;padding:8px 12px;border-radius:20px;font-size:12px;cursor:pointer}.tab.active{background:#eaf0ff;color:var(--blue);border-color:#cbd8ff}
+.item{border:1px solid var(--line);background:white;border-radius:11px;padding:16px;margin-bottom:11px}.item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.item h3{font-size:14px;margin:0 0 5px}.meta{font-size:11px;color:var(--muted);line-height:1.7}.tag{font-size:10px;padding:5px 8px;border-radius:20px;background:#fff4df;color:var(--amber);white-space:nowrap}.tag.ok{background:#e8f7f0;color:var(--green)}.tag.no{background:#fff0f0;color:var(--red)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.details{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);display:none}.details.open{display:block}.receipt{background:#f4f6fa;padding:13px;border-radius:8px;color:var(--muted);font-size:12px;margin:9px 0}.checklist{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0}.check{display:flex;gap:8px;font-size:12px;line-height:1.4}.check input{accent-color:var(--blue);margin-top:1px}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:12px 13px;border-top:1px solid #edf0f5}th{color:var(--muted);background:#fafbfd}.scroll{overflow:auto}
+input,select,textarea{font:inherit;border:1px solid var(--line);border-radius:7px;padding:9px;background:white;color:var(--ink)}.search{width:min(280px,100%)}.empty{padding:25px;text-align:center;color:var(--muted);font-size:12px}
+.toast{position:fixed;right:20px;bottom:20px;background:#17243a;color:#fff;padding:12px 16px;border-radius:9px;font-size:12px;display:none;box-shadow:0 8px 25px #0002;z-index:10}
+.modalbg{display:none;position:fixed;inset:0;background:#07132999;z-index:20;align-items:center;justify-content:center;padding:16px}.modalbg.show{display:flex}.modal{background:white;border-radius:13px;padding:20px;width:min(460px,100%)}.modal h3{margin-top:0}.modal textarea{width:100%;min-height:90px;margin:10px 0}
+@media(max-width:900px){aside{width:205px}.cards{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:650px){.app{display:block}aside{width:auto;padding:12px}.brand{padding:5px 10px 12px}.brand small{display:inline;margin-left:8px}nav{display:flex;overflow:auto;gap:4px}nav button{white-space:nowrap;width:auto;padding:9px}.group,.aside-note{display:none}.top{padding:0 15px}.content{padding:18px 12px}.head{flex-direction:column}.cards{gap:8px}.card{padding:13px}.kpi{font-size:23px}.checklist{grid-template-columns:1fr}}
+
+#authGate{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:18px}
+.auth-card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 12px 40px #17243a14}
+.auth-card h1{font-size:22px;margin:0 0 8px}.auth-card p{color:var(--muted);font-size:13px;line-height:1.5}
+.auth-card label{display:block;font-size:12px;font-weight:700;margin:15px 0 6px}.auth-card input{width:100%;padding:12px}.auth-card .btn{width:100%;padding:12px;margin-top:18px}.auth-error{color:var(--red)!important;min-height:18px}
+#appRoot{display:none}
+</style></head><body>
+<div id="authGate"><form class="auth-card" id="adminLogin"><div class="brand" style="padding:0 0 18px;color:var(--navy)">DRACHWIN<small style="color:var(--muted)">ADMINISTRATION</small></div><h1>Connexion administrateur</h1><p>Connecte-toi avec le compte DRACHWIN autorisé dans Supabase.</p><label for="adminEmail">Adresse e-mail</label><input id="adminEmail" type="email" autocomplete="username" required value=""><label for="adminPassword">Mot de passe</label><input id="adminPassword" type="password" autocomplete="current-password" required><button class="btn" id="adminLoginBtn" type="submit">Se connecter</button><p class="auth-error" id="authError" role="alert"></p></form></div>
+<div id="appRoot">
+<div class="app">
+<aside><div class="brand">DRACHWIN<small>ADMINISTRATION</small></div><nav>
+<div class="group">Principal</div>
+<button class="active" data-page="home"><span>▦</span>Vue générale</button>
+<div class="group">À traiter</div>
+<button data-page="registrations"><span>♙</span>Inscriptions <b id="nreg">—</b></button>
+<button data-page="tasks"><span>✓</span>Tâches <b id="ntask">2</b></button>
+<button data-page="catalogues"><span>▤</span>Catalogues <b id="ncat">2</b></button>
+<div class="group">Gestion</div>
+<button data-page="members"><span>♧</span>Membres</button>
+<button data-page="coins"><span>◉</span>Coins</button>
+<button data-page="sales"><span>▣</span>Ventes</button>
+<div class="group">Trésorerie</div>
+<button data-page="cash"><span>＋</span>Caisse</button>
+<button data-page="fund"><span>◈</span>Fonds</button>
+<button data-page="settings"><span>⚙</span>Paramètres</button>
+</nav><div class="aside-note">Accès protégé par Supabase<br>Les modules métier restent en mode démonstration.</div></aside>
+<main><header class="top"><small>DRACHWIN / <b id="crumb">Vue générale</b></small><span class="admin">ADMINISTRATEUR</span></header><div class="content">
+<section class="page active" id="home"><div class="head"><div><h1>Vue générale</h1><div class="muted">Suivi et validation des activités DRACHWIN.</div></div><button class="btn light" onclick="loadDashboardOverview()">Actualiser les chiffres</button></div>
+<div class="cards">
+<div class="card"><div class="kpi-label">Membres enregistrés</div><div class="kpi" id="kMembers">—</div><div class="muted">Données Supabase</div></div>
+<div class="card"><div class="kpi-label">Inscriptions à examiner</div><div class="kpi" id="kReg">—</div><div class="muted">Demandes Program Win</div></div>
+<div class="card"><div class="kpi-label">Tâches à vérifier</div><div class="kpi" id="kTask">—</div><div class="muted">Module non connecté</div></div>
+<div class="card"><div class="kpi-label">Catalogues à vérifier</div><div class="kpi" id="kCat">—</div><div class="muted">Module non connecté</div></div>
+</div>
+<div class="grid2"><div class="panel"><h3 class="panel-title">État de la connexion</h3><p class="meta">Membres : lecture directe depuis <b>member_profiles</b>.</p><p class="meta">Inscriptions : lecture directe depuis <b>program_win_requests</b>.</p><p class="meta">Tâches, catalogues, ventes et trésorerie : connexion serveur à réaliser.</p><p class="muted" id="overviewStatus">Actualisation des données…</p></div>
+<div class="panel"><h3 class="panel-title">Accès rapide</h3><div class="actions"><button class="btn light" onclick="page('registrations')">Examiner inscriptions</button><button class="btn light" onclick="page('tasks')">Vérifier tâches</button><button class="btn light" onclick="page('catalogues')">Vérifier catalogues</button></div><p class="meta" style="margin-top:15px">Chaque décision est affichée dans l'interface. Une future version serveur devra enregistrer l'auteur, la date et le motif de chaque décision.</p></div></div>
+<div class="panel"><h3 class="panel-title">Dernières décisions</h3><div id="log"><div class="empty">Aucune décision prise dans cette session.</div></div></div></section>
+
+<section class="page" id="registrations"><div class="head"><div><h1>Demandes Program Win</h1><div class="muted">Demandes réelles chargées depuis Supabase · program_win_requests.</div></div><div class="actions" style="margin-top:0"><input id="regSearch" class="search" placeholder="Rechercher un membre…" oninput="filterRealRequests(this.value)"><button class="btn light" onclick="loadProgramWinRequests()">Actualiser</button></div></div><div class="tabs"><button class="tab active" onclick="setRequestFilter('all',this)">Toutes</button><button class="tab" onclick="setRequestFilter('pending',this)">À examiner</button><button class="tab" onclick="setRequestFilter('approved',this)">Validées</button><button class="tab" onclick="setRequestFilter('rejected',this)">Refusées</button></div><div class="panel"><div class="muted" id="requestCount">Chargement des demandes…</div><div id="regList"><div class="empty">Chargement des demandes Program Win…</div></div><p class="muted" id="requestError" role="status"></p></div><div class="panel"><b>Validation désactivée temporairement</b><p class="muted">Les demandes sont consultables. Les boutons de validation et de refus seront activés après le test sécurisé de la répartition financière. Aucun portefeuille ne sera modifié depuis cette rubrique pour le moment.</p></div></section>
+
+<section class="page" id="tasks"><div class="head"><div><h1>Vérification des tâches</h1><div class="muted">Ouvre une soumission, vérifie la preuve, puis valide ou refuse.</div></div></div><div class="tabs"><button class="tab active" onclick="filterStatus('task','all',this)">Toutes</button><button class="tab" onclick="filterStatus('task','pending',this)">À vérifier</button><button class="tab" onclick="filterStatus('task','approved',this)">Validées</button><button class="tab" onclick="filterStatus('task','rejected',this)">Refusées</button></div><div id="taskList"></div></section>
+
+<section class="page" id="catalogues"><div class="head"><div><h1>Vérification des catalogues MACHE</h1><div class="muted">Contrôle les 9 critères du projet avant publication.</div></div></div><div class="tabs"><button class="tab active" onclick="filterStatus('cat','all',this)">Tous</button><button class="tab" onclick="filterStatus('cat','pending',this)">À vérifier</button><button class="tab" onclick="filterStatus('cat','approved',this)">Validés</button><button class="tab" onclick="filterStatus('cat','rejected',this)">Refusés</button></div><div id="catList"></div></section>
+
+<section class="page" id="members"><div class="head"><div><h1>Membres</h1><div class="muted">Données chargées depuis Supabase · member_profiles.</div></div><button class="btn light" onclick="loadMembers()">Actualiser</button></div><div class="panel"><div class="actions" style="margin-top:0;align-items:center"><input id="memberSearch" class="search" placeholder="Rechercher nom, e-mail ou téléphone…" oninput="filterMemberRows(this.value)"><span class="muted" id="memberCount">Chargement des membres…</span></div><div class="scroll"><table><thead><tr><th>Identifiant</th><th>Nom complet</th><th>E-mail</th><th>Téléphone</th><th>Inscrit le</th><th>Solde portefeuille</th></tr></thead><tbody id="memberRows"><tr><td colspan="6" class="empty">Chargement des données…</td></tr></tbody></table></div><p class="muted" id="memberError" role="status"></p></div></section>
+<section class="page" id="coins"><div class="head"><div><h1>Gestion des Coins</h1><div class="muted">Aperçu des validations liées aux tâches.</div></div></div><div class="panel"><b>Important</b><p class="muted">Les Coins ne doivent être crédités qu'après validation d'une tâche. Dans cette maquette, aucune monnaie réelle ni aucun solde membre n'est modifié.</p></div></section>
+<section class="page" id="sales"><div class="head"><div><h1>Ventes</h1><div class="muted">Suivi des commandes et justificatifs.</div></div></div><div class="panel"><p class="muted">Cette rubrique sera développée après définition des procédures de commande, paiement, livraison et remboursement.</p></div></section>
+<section class="page" id="cash"><div class="head"><div><h1>Caisse DRACHWIN</h1><div class="muted">Enregistre les entrées et sorties d’argent de la caisse.</div></div></div><div class="cards"><div class="card"><div class="kpi-label">Solde actuel de la caisse</div><div class="kpi" id="cashBalance">0 HTG</div><div class="muted">Solde de démonstration</div></div><div class="card"><div class="kpi-label">Opérations enregistrées</div><div class="kpi" id="cashCount">0</div><div class="muted">Historique de la caisse</div></div></div><div class="panel"><h3 class="panel-title">Nouvelle opération</h3><div class="actions" style="align-items:center"><select id="cashType"><option value="in">Ajouter à la caisse</option><option value="out">Retirer de la caisse</option></select><input id="cashAmount" type="number" min="0.01" step="0.01" placeholder="Montant en HTG"><input id="cashReason" style="flex:1;min-width:190px" placeholder="Pourquoi ? Motif obligatoire"><button class="btn" onclick="addMoney('cash')">Enregistrer</button></div><p class="meta">La date et l’heure seront enregistrées automatiquement. Un retrait doit être confirmé avant validation.</p></div><div class="panel"><h3 class="panel-title">Historique de la caisse</h3><div class="scroll" id="cashHistory"></div></div></section>
+<section class="page" id="fund"><div class="head"><div><h1>Fonds DRACHWIN</h1><div class="muted">Enregistre séparément les entrées et sorties du fonds.</div></div></div><div class="cards"><div class="card"><div class="kpi-label">Solde actuel du fonds</div><div class="kpi" id="fundBalance">0 HTG</div><div class="muted">Solde de démonstration</div></div><div class="card"><div class="kpi-label">Opérations enregistrées</div><div class="kpi" id="fundCount">0</div><div class="muted">Historique du fonds</div></div></div><div class="panel"><h3 class="panel-title">Nouvelle opération</h3><div class="actions" style="align-items:center"><select id="fundType"><option value="in">Ajouter au fonds</option><option value="out">Retirer du fonds</option></select><input id="fundAmount" type="number" min="0.01" step="0.01" placeholder="Montant en HTG"><input id="fundReason" style="flex:1;min-width:190px" placeholder="Pourquoi ? Motif obligatoire"><button class="btn" onclick="addMoney('fund')">Enregistrer</button></div><p class="meta">La date et l’heure seront enregistrées automatiquement. Un retrait doit être confirmé avant validation.</p></div><div class="panel"><h3 class="panel-title">Historique du fonds</h3><div class="scroll" id="fundHistory"></div></div></section>
+<section class="page" id="settings"><div class="head"><div><h1>Paramètres</h1><div class="muted">Réglages de la maquette.</div></div></div><div class="panel"><p class="muted">Les comptes administrateurs, permissions et journaux sécurisés seront ajoutés avec le backend. Ne publie pas cette maquette comme outil d'administration réel.</p><button class="btn bad" onclick="if(confirm('Réinitialiser les décisions de démonstration ?'))resetData()">Réinitialiser la démonstration</button></div></section>
+</div></main></div>
+<div class="modalbg" id="rejectModal"><div class="modal"><h3>Motif du refus</h3><div class="muted">Indique clairement ce que le membre doit corriger.</div><textarea id="rejectReason" placeholder="Ex. : preuve illisible, informations manquantes…"></textarea><div class="actions"><button class="btn bad" id="confirmReject">Confirmer le refus</button><button class="btn light" onclick="closeReject()">Annuler</button></div></div></div><div class="toast" id="toast"></div>
+</div><!-- /appRoot -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// Authentification Supabase : le rôle doit être dans app_metadata (jamais user_metadata).
+const SUPABASE_URL = "https://mopvznfxlymnrwbjztcd.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_s1I_p8gaZ_jUm7_jrEfLqg_IoeSs6K4";
+const adminSupabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const authGate = document.getElementById("authGate"), appRoot = document.getElementById("appRoot");
+function showAdminApp(user){
+  if(!user || !user.app_metadata || user.app_metadata.role !== "admin") throw new Error("Ce compte ne possède pas le rôle administrateur.");
+  document.getElementById("adminEmail").value = user.email || "";
+  authGate.style.display = "none"; appRoot.style.display = "block";
+  loadMembers();
+  loadDashboardOverview();
+  loadTaskSubmissions();
+  const top = document.querySelector(".top");
+  if(top && !document.getElementById("adminSignOut")){const b=document.createElement("button");b.id="adminSignOut";b.className="btn light";b.textContent="Déconnexion";b.onclick=async()=>{await adminSupabase.auth.signOut();location.reload()};top.appendChild(b)}
+}
+async function verifyAdminSession(){
+  const {data,error}=await adminSupabase.auth.getSession();
+  if(error) throw error;
+  if(data.session) showAdminApp(data.session.user);
+}
+document.getElementById("adminLogin").addEventListener("submit",async e=>{
+  e.preventDefault();const btn=document.getElementById("adminLoginBtn"),err=document.getElementById("authError");
+  btn.disabled=true;btn.textContent="Connexion…";err.textContent="";
+  try{const {data,error}=await adminSupabase.auth.signInWithPassword({email:document.getElementById("adminEmail").value.trim(),password:document.getElementById("adminPassword").value});
+    if(error) throw error;showAdminApp(data.user);
+  }catch(ex){err.textContent=ex.message||"Connexion impossible.";try{await adminSupabase.auth.signOut()}catch(_){}}
+  finally{btn.disabled=false;btn.textContent="Se connecter"}
+});
+verifyAdminSession().catch(e=>{document.getElementById("authError").textContent=e.message||"Vérification de session impossible."});
+
+const criteria=[
+["Image nette","Image lisible, non coupée et d'au moins 600 px sur le grand côté."],
+["Activité réelle","Vrais produits, services ou événements correspondant au type choisi."],
+["Noms cohérents","Nom du commerce et du commerçant cohérents avec le catalogue."],
+["Contact valide","Numéro WhatsApp haïtien valide appartenant au commerçant."],
+["Contenu autorisé","Aucun contenu sexuel, violent, haineux, discriminatoire, arme, drogue ou produit illégal."],
+["Pas de fausses promesses","Aucune promesse de gains garantis, placement, pyramide ou argent facile."],
+["Droits respectés","Le membre possède les droits sur les images et contenus utilisés."],
+["Données de tiers","Aucune donnée personnelle d'autrui sans autorisation."],
+["Pas de doublon","Un catalogue par activité, maximum 3 en examen ou publiés par membre."]
+];
+const seed={
+reg:[
+{id:"REG-014",name:"David Joseph",email:"david@example.com",phone:"+509 3700 0101",date:"31/10/2026",program:"Win",amount:"300 HTG",pay:"NatCash",reference:"NC-583921",status:"pending"},
+{id:"REG-013",name:"Sarah Michel",email:"sarah@example.com",phone:"+509 4200 0202",date:"30/10/2026",program:"Win",amount:"300 HTG",pay:"MonCash",reference:"MC-193840",status:"pending"}
+],
+task:[
+{id:"TSK-021",member:"DW0099 · Marie Charles",title:"Publier un flyer dans son statut WhatsApp",coins:5,date:"31/10/2026",proof:"Capture de statut (simulation)",status:"pending"},
+{id:"TSK-020",member:"DW0097 · Samuel Pierre",title:"Créer une vidéo sur DRACHWIN et la publier sur TikTok",coins:10,date:"30/10/2026",proof:"Lien vidéo (simulation)",status:"pending"}
+],
+cat:[
+{id:"MCH-008",owner:"DW0098 · David Joseph",merchant:"David Services",type:"Business",name:"Catalogue de services informatiques",whatsapp:"+509 3700 0101",date:"31/10/2026",status:"pending"},
+{id:"MCH-007",owner:"DW0095 · Nadia Louis",merchant:"Nadia Créations",type:"Activité culturelle",name:"Catalogue créations artisanales",whatsapp:"+509 4200 0202",date:"30/10/2026",status:"pending"}
+],log:[]
+};
+let data;try{data=JSON.parse(localStorage.getItem("drachwin_admin_v2"))||structuredClone(seed)}catch(e){data=JSON.parse(JSON.stringify(seed))}
+data.finance=data.finance||{cashBalance:0,fundBalance:0,operations:[]};data.finance.operations=data.finance.operations||[];
+let activeFilter={reg:"all",task:"all",cat:"all"},rejectTarget=null;
+function save(){localStorage.setItem("drachwin_admin_v2",JSON.stringify(data));updateCounts()}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(s){let t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",2400)}
+function page(id){document.querySelectorAll(".page").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("nav button[data-page]").forEach(x=>x.classList.toggle("active",x.dataset.page===id));document.getElementById("crumb").textContent=document.querySelector('nav button[data-page="'+id+'"]').textContent.trim();if(id==="home")loadDashboardOverview();if(id==="registrations")loadProgramWinRequests();if(id==="tasks")loadTaskSubmissions();if(id==="catalogues")renderCat();if(id==="members")loadMembers();if(id==="cash"||id==="fund")renderFinance()}
+document.querySelectorAll("nav button[data-page]").forEach(b=>b.onclick=()=>page(b.dataset.page));
+
+
+async function loadDashboardOverview(){
+  const status=document.getElementById("overviewStatus");if(status)status.textContent="Actualisation des données Supabase…";
+  try{
+    const [membersResult,requestsResult]=await Promise.all([
+      adminSupabase.from("member_profiles").select("user_id",{count:"exact",head:true}),
+      adminSupabase.from("program_win_requests").select("id,status")
+    ]);
+    if(membersResult.error)throw membersResult.error;
+    if(requestsResult.error)throw requestsResult.error;
+    document.getElementById("kMembers").textContent=Number(membersResult.count||0).toLocaleString("fr-FR");
+    const requests=requestsResult.data||[],pending=requests.filter(r=>r.status==="pending").length;
+    document.getElementById("kReg").textContent=pending.toLocaleString("fr-FR");
+    document.getElementById("nreg").textContent=pending.toLocaleString("fr-FR");
+    if(status)status.textContent="Données actualisées · membres et demandes Program Win.";
+  }catch(err){if(status)status.textContent="Erreur de lecture Supabase : "+(err.message||"accès refusé");}
+}
+
+// Membres : lecture réelle de member_profiles via la session administrateur.
+function filterMemberRows(q){document.querySelectorAll("#memberRows tr").forEach(row=>row.style.display=row.textContent.toLowerCase().includes(q.toLowerCase())?"":"none")}
+function formatMemberDate(value){if(!value)return "—";const d=new Date(value);return Number.isNaN(d.getTime())?esc(value):d.toLocaleDateString("fr-FR")}
+function formatMemberMoney(value){const n=Number(value);return Number.isFinite(n)?n.toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" HTG":"—"}
+async function loadMembers(){
+  const body=document.getElementById("memberRows"),countLabel=document.getElementById("memberCount"),errorLabel=document.getElementById("memberError");
+  if(!body)return;
+  body.innerHTML='<tr><td colspan="6" class="empty">Chargement des membres…</td></tr>';
+  countLabel.textContent="Chargement…";errorLabel.textContent="";
+  try{
+    const {data:members,error}=await adminSupabase.from("member_profiles").select("user_id,nom,prenom,email,tel,created_at,wallet_balance").order("created_at",{ascending:false});
+    if(error)throw error;
+    const rows=members||[];
+    document.getElementById("kMembers").textContent=rows.length.toLocaleString("fr-FR");
+    countLabel.textContent=rows.length+" membre(s)";
+    if(!rows.length){body.innerHTML='<tr><td colspan="6" class="empty">Aucun membre trouvé dans member_profiles.</td></tr>';return;}
+    body.innerHTML=rows.map(m=>{
+      const fullName=[m.prenom,m.nom].filter(Boolean).join(" ")||"—";
+      const shortId=m.user_id?String(m.user_id).slice(0,8)+"…":"—";
+      return `<tr><td title="${esc(m.user_id||"")}">${esc(shortId)}</td><td>${esc(fullName)}</td><td>${esc(m.email||"—")}</td><td>${esc(m.tel||"—")}</td><td>${formatMemberDate(m.created_at)}</td><td>${formatMemberMoney(m.wallet_balance)}</td></tr>`;
+    }).join("");
+    const search=document.getElementById("memberSearch");if(search&&search.value)filterMemberRows(search.value);
+  }catch(err){
+    body.innerHTML='<tr><td colspan="6" class="empty">Impossible de charger les membres.</td></tr>';
+    countLabel.textContent="Données indisponibles";
+    errorLabel.textContent="Erreur Supabase : "+(err.message||"lecture refusée");
+  }
+}
+
+function count(type){return data[type].filter(x=>x.status==="pending").length}
+function updateCounts(){let r=count("reg"),t=count("task"),c=count("cat");document.getElementById("nreg").textContent=r;document.getElementById("ntask").textContent=t;document.getElementById("ncat").textContent=c;document.getElementById("kReg").textContent=r;document.getElementById("kTask").textContent=t;document.getElementById("kCat").textContent=c}
+function badge(s){return s==="approved"?'<span class="tag ok">Validé</span>':s==="rejected"?'<span class="tag no">Refusé</span>':'<span class="tag">À examiner</span>'}
+function filterStatus(type,status,btn){activeFilter[type]=status;btn.parentElement.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");({reg:renderReg,task:renderTask,cat:renderCat})[type]()}
+function filterItems(id,q){document.querySelectorAll("#"+id+" .item").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q.toLowerCase())?"":"none")}
+let realRequests=[], requestFilter="all";
+function setRequestFilter(status,btn){requestFilter=status;btn.parentElement.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));btn.classList.add("active");renderRealRequests()}
+function filterRealRequests(q){const term=(q||"").toLowerCase();document.querySelectorAll("#regList .item").forEach(row=>row.style.display=row.textContent.toLowerCase().includes(term)?"":"none")}
+async function loadProgramWinRequests(){
+  const box=document.getElementById("regList"),countLabel=document.getElementById("requestCount"),errorLabel=document.getElementById("requestError");
+  if(!box)return;box.innerHTML='<div class="empty">Chargement des demandes Program Win…</div>';countLabel.textContent="Chargement…";errorLabel.textContent="";
+  try{
+    const {data:requests,error}=await adminSupabase.from("program_win_requests").select("id,user_id,status,submitted_at,reviewed_at,admin_note").order("submitted_at",{ascending:false});
+    if(error)throw error;
+    const rows=requests||[],ids=[...new Set(rows.map(x=>x.user_id).filter(Boolean))];let profiles=[];
+    if(ids.length){const result=await adminSupabase.from("member_profiles").select("user_id,nom,prenom,email,tel,referral_code,referred_by").in("user_id",ids);if(result.error)throw result.error;profiles=result.data||[];}
+    const byId=new Map(profiles.map(x=>[x.user_id,x]));
+    realRequests=rows.map(r=>({...r,profile:byId.get(r.user_id)||{}}));
+    const pending=rows.filter(r=>r.status==="pending").length;
+    document.getElementById("nreg").textContent=pending;document.getElementById("kReg").textContent=pending;
+    countLabel.textContent=rows.length+" demande(s) · "+pending+" à examiner";
+    renderRealRequests();
+  }catch(err){box.innerHTML='<div class="empty">Impossible de charger les demandes Program Win.</div>';countLabel.textContent="Données indisponibles";errorLabel.textContent="Erreur Supabase : "+(err.message||"lecture refusée");document.getElementById("nreg").textContent="—";document.getElementById("kReg").textContent="—";}
+}
+function renderRealRequests(){
+  const box=document.getElementById("regList");if(!box)return;
+  const rows=realRequests.filter(r=>requestFilter==="all"||r.status===requestFilter);
+  if(!rows.length){box.innerHTML='<div class="empty">Aucune demande dans cette catégorie.</div>';return;}
+  box.innerHTML=rows.map(r=>{const p=r.profile||{},name=[p.prenom,p.nom].filter(Boolean).join(" ")||"Membre sans nom";const date=r.submitted_at?new Date(r.submitted_at).toLocaleString("fr-FR"):"Date inconnue";const id=String(r.id).slice(0,8)+"…";return `<article class="item"><div class="item-top"><div><h3>${esc(name)} <span class="muted">· ${esc(id)}</span></h3><div class="meta">${esc(p.email||"E-mail non renseigné")} · ${esc(p.tel||"Téléphone non renseigné")}<br>Demande reçue le ${esc(date)}<br>Identifiant membre : ${esc(String(r.user_id||"").slice(0,8))}…</div></div>${badge(r.status)}</div><div class="details" style="display:block"><div class="meta">Code de parrainage : ${esc(p.referral_code||"—")} · Parrain déclaré : ${esc(p.referred_by||"—")}</div>${r.admin_note?`<p class="meta">Note administrateur : ${esc(r.admin_note)}</p>`:""}</div></article>`}).join("");
+  const search=document.getElementById("regSearch");if(search&&search.value)filterRealRequests(search.value);
+}
+function renderReg(){let box=document.getElementById("regList"),arr=data.reg.filter(x=>activeFilter.reg==="all"||x.status===activeFilter.reg);box.innerHTML=arr.length?"":"<div class='empty'>Aucune inscription dans cette catégorie.</div>";arr.forEach(x=>{let d=document.createElement("article");d.className="item";d.innerHTML=`<div class="item-top"><div><h3>${esc(x.name)} <span class="muted">· ${esc(x.id)}</span></h3><div class="meta">${esc(x.email)} · ${esc(x.phone)}<br>Reçue le ${esc(x.date)} · Programme ${esc(x.program)}</div></div>${badge(x.status)}</div><div class="actions"><button class="btn light" onclick="toggleDetail('reg-${x.id}')">Voir le dossier</button>${x.status==="pending"?`<button class="btn good" onclick="decide('reg','${x.id}','approved')">Valider l'inscription</button><button class="btn bad" onclick="askReject('reg','${x.id}')">Refuser</button>`:""}</div><div class="details" id="reg-${x.id}"><div class="receipt"><b>Justificatif de paiement (exemple)</b><br>Canal : ${esc(x.pay)} · Montant déclaré : ${esc(x.amount)}<br>Référence : ${esc(x.reference)}<br><i>Image de reçu non fournie dans cette maquette. Vérifier le reçu original avant toute validation.</i></div><div class="meta">Vérifie l'identité, les coordonnées, le montant reçu et la référence de transaction.</div>${x.reason?`<p class="meta">Motif du refus : ${esc(x.reason)}</p>`:""}</div>`;box.appendChild(d)})}
+let realTaskSubmissions=[];
+const taskNames=["S’inscrire, compléter son profil, activer son compte et lire le règlement","Envoyer le message de présentation de DRACHWIN dans 5 groupes WhatsApp","Créer une vidéo sur DRACHWIN et la publier sur TikTok","Publier un flyer de DRACHWIN dans son statut WhatsApp","Inviter 15 personnes à rejoindre DRACHWIN avec son code de parrainage","S’inscrire dans Program WIN","Atteindre le niveau 3 dans le système de réseautage"];
+async function loadTaskSubmissions(){
+ const box=document.getElementById("taskList");if(!box)return;box.innerHTML='<div class="empty">Chargement des preuves depuis Supabase…</div>';
+ try{
+  const {data:rows,error}=await adminSupabase.from("task_submissions").select("id,user_id,task_key,reward_coins,proof_path,proof_mime,proof_size,status,submitted_at,reviewed_at,review_reason").order("submitted_at",{ascending:false});
+  if(error)throw error;const list=rows||[],ids=[...new Set(list.map(x=>x.user_id))];let profiles=[];
+  if(ids.length){const pr=await adminSupabase.from("member_profiles").select("user_id,nom,prenom,email,tel").in("user_id",ids);if(pr.error)throw pr.error;profiles=pr.data||[];}
+  const pm=new Map(profiles.map(x=>[x.user_id,x]));
+  realTaskSubmissions=await Promise.all(list.map(async r=>{let signed=null;const sr=await adminSupabase.storage.from("task-proofs").createSignedUrl(r.proof_path,600);if(!sr.error)signed=sr.data.signedUrl;return {...r,profile:pm.get(r.user_id)||{},signedUrl:signed}}));
+  renderTask();const pending=list.filter(x=>x.status==="pending").length;document.getElementById("ntask").textContent=pending;document.getElementById("kTask").textContent=pending;
+ }catch(e){box.innerHTML='<div class="empty">Impossible de charger les preuves : '+esc(e.message||e)+'</div>';toast('Erreur de chargement des tâches.');}
+}
+function renderRealTasks(){const box=document.getElementById("taskList"),rows=realTaskSubmissions.filter(r=>activeFilter.task==="all"||r.status===activeFilter.task);if(!rows.length){box.innerHTML='<div class="empty">Aucune preuve soumise dans cette catégorie.</div>';return;}
+ box.innerHTML=rows.map(r=>{const p=r.profile||{},name=[p.prenom,p.nom].filter(Boolean).join(" ")||"Membre";const n=Math.max(1,Math.min(7,Number(String(r.task_key).replace('task_',''))||1));const date=r.submitted_at?new Date(r.submitted_at).toLocaleString('fr-FR'):'Date inconnue';const media=r.signedUrl?(String(r.proof_mime).startsWith('video/')?`<video controls playsinline style="max-width:100%;max-height:360px" src="${esc(r.signedUrl)}"></video>`:`<img alt="Preuve envoyée" style="max-width:100%;max-height:360px;object-fit:contain" src="${esc(r.signedUrl)}">`):'<p class="meta">Fichier privé indisponible ou lien expiré. Actualise la page.</p>';return `<article class="item"><div class="item-top"><div><h3>${esc(taskNames[n-1])}</h3><div class="meta">${esc(name)} · ${esc(p.email||'E-mail non renseigné')}<br>Soumise le ${esc(date)} · Récompense prévue : ${Number(r.reward_coins)||0} Coins<br>ID membre : ${esc(String(r.user_id).slice(0,12))}…</div></div>${badge(r.status)}</div><div class="details" style="display:block"><div class="receipt">${media}</div>${r.review_reason?`<p class="meta">Motif : ${esc(r.review_reason)}</p>`:''}</div>${r.status==='pending'?`<div class="actions"><button class="btn good" onclick="decide('task','${esc(r.id)}','approved')">Bonne preuve — valider</button><button class="btn bad" onclick="askReject('task','${esc(r.id)}')">Preuve incorrecte — refuser</button></div>`:''}</article>`}).join('');}
+function renderTask(){renderRealTasks()}
+function renderCat(){let box=document.getElementById("catList"),arr=data.cat.filter(x=>activeFilter.cat==="all"||x.status===activeFilter.cat);box.innerHTML=arr.length?"":"<div class='empty'>Aucun catalogue dans cette catégorie.</div>";arr.forEach(x=>{let d=document.createElement("article");d.className="item";let checks=x.checks||[];d.innerHTML=`<div class="item-top"><div><h3>${esc(x.name)}</h3><div class="meta">${esc(x.id)} · ${esc(x.owner)}<br>Commerce : ${esc(x.merchant)} · Type : ${esc(x.type)}<br>WhatsApp : ${esc(x.whatsapp)} · Soumis le ${esc(x.date)}</div></div>${badge(x.status)}</div><div class="actions"><button class="btn light" onclick="toggleDetail('cat-${x.id}')">Examiner le catalogue</button>${x.status==="pending"?`<button class="btn good" id="approve-${x.id}" disabled onclick="decide('cat','${x.id}','approved')">Valider le catalogue</button><button class="btn bad" onclick="askReject('cat','${x.id}')">Refuser</button>`:""}</div><div class="details" id="cat-${x.id}"><div class="receipt"><b>Contrôle obligatoire — 9 critères MACHE</b><br>Coche chaque critère seulement après vérification de l'image et des informations originales.</div><div class="checklist">${criteria.map((c,i)=>`<label class="check"><input type="checkbox" ${checks[i]?"checked":""} ${x.status!=="pending"?"disabled":""} onchange="setCheck('${x.id}',${i},this.checked)"><span><b>${i+1}. ${c[0]}</b><br>${c[1]}</span></label>`).join("")}</div><div class="meta" id="progress-${x.id}">${checks.filter(Boolean).length}/9 critères confirmés. Tous les critères sont obligatoires pour valider.</div>${x.reason?`<p class="meta">Motif du refus : ${esc(x.reason)}</p>`:""}</div>`;box.appendChild(d);if(x.status==="pending")updateCatButton(x)})}
+function updateCatButton(x){let b=document.getElementById("approve-"+x.id);if(b)b.disabled=(x.checks||[]).filter(Boolean).length!==9}
+function setCheck(id,i,v){let x=data.cat.find(x=>x.id===id);x.checks=x.checks||[];x.checks[i]=v;save();document.getElementById("progress-"+id).textContent=x.checks.filter(Boolean).length+"/9 critères confirmés. Tous les critères sont obligatoires pour valider.";updateCatButton(x)}
+function toggleDetail(id){document.getElementById(id).classList.toggle("open")}
+function decide(type,id,status,reason=""){if(type==="task"){(async()=>{try{const {error}=await adminSupabase.rpc("review_task_submission",{p_submission_id:id,p_decision:status,p_reason:reason||null});if(error)throw error;toast(status==="approved"?"Preuve validée.":"Preuve refusée.");await loadTaskSubmissions();}catch(e){toast("Décision non enregistrée : "+(e.message||e));}})();return;}let x=data[type].find(x=>x.id===id);if(!x)return;if(type==="cat"&&status==="approved"&&((x.checks||[]).filter(Boolean).length!==9)){toast("Vérifie les 9 critères avant de valider.");return}x.status=status;x.reason=reason;x.decidedAt=new Date().toLocaleString("fr-FR");data.log.unshift({text:(type==="reg"?"Inscription":type==="task"?"Tâche":"Catalogue")+" "+id+" : "+(status==="approved"?"validé":"refusé"),date:x.decidedAt});save();renderReg();renderTask();renderCat();renderLog();toast(status==="approved"?"Décision enregistrée : validé.":"Décision enregistrée : refusé.")}
+function askReject(type,id){rejectTarget={type,id};document.getElementById("rejectReason").value="";document.getElementById("rejectModal").classList.add("show")}
+function closeReject(){document.getElementById("rejectModal").classList.remove("show");rejectTarget=null}
+document.getElementById("confirmReject").onclick=()=>{let reason=document.getElementById("rejectReason").value.trim();if(!reason){toast("Ajoute le motif du refus.");return}let t=rejectTarget;closeReject();decide(t.type,t.id,"rejected",reason)}
+function renderLog(){let l=document.getElementById("log");l.innerHTML=data.log.length?data.log.slice(0,6).map(x=>`<div class="meta" style="padding:7px 0;border-bottom:1px solid #edf0f5">${esc(x.text)} · ${esc(x.date)}</div>`).join(""):"<div class='empty'>Aucune décision prise dans cette session.</div>"}
+
+function money(n){return Number(n||0).toLocaleString("fr-FR",{minimumFractionDigits:2,maximumFractionDigits:2})+" HTG"}
+function addMoney(account){let type=document.getElementById(account+"Type").value,amount=Number(document.getElementById(account+"Amount").value),reason=document.getElementById(account+"Reason").value.trim();if(!Number.isFinite(amount)||amount<=0){toast("Entre un montant supérieur à zéro.");return}if(!reason){toast("Le motif est obligatoire.");return}let key=account==="cash"?"cashBalance":"fundBalance",before=Number(data.finance[key]||0);if(type==="out"&&amount>before){toast("Solde insuffisant pour ce retrait.");return}let action=type==="in"?"ajout":"retrait";if(type==="out"&&!confirm("Confirmer le retrait de "+money(amount)+" ?\nMotif : "+reason))return;let after=before+(type==="in"?amount:-amount),now=new Date();data.finance[key]=after;data.finance.operations.unshift({id:"FIN-"+now.getTime(),account,type,amount,reason,before,after,at:now.toLocaleString("fr-FR"),admin:"Administrateur"});save();document.getElementById(account+"Amount").value="";document.getElementById(account+"Reason").value="";renderFinance();toast("Opération enregistrée.")}
+function renderFinance(){["cash","fund"].forEach(account=>{let key=account==="cash"?"cashBalance":"fundBalance",ops=data.finance.operations.filter(o=>o.account===account);document.getElementById(account+"Balance").textContent=money(data.finance[key]);document.getElementById(account+"Count").textContent=ops.length;let target=document.getElementById(account+"History");target.innerHTML=ops.length?`<table><thead><tr><th>Date et heure</th><th>Opération</th><th>Montant</th><th>Motif</th><th>Solde avant</th><th>Solde après</th><th>Responsable</th></tr></thead><tbody>${ops.map(o=>`<tr><td>${esc(o.at)}</td><td><span class="tag ${o.type==="in"?"ok":"no"}">${o.type==="in"?"Ajout":"Retrait"}</span></td><td>${money(o.amount)}</td><td>${esc(o.reason)}</td><td>${money(o.before)}</td><td><b>${money(o.after)}</b></td><td>${esc(o.admin||"Administrateur")}</td></tr>`).join("")}</tbody></table>`:"<div class='empty'>Aucune opération enregistrée.</div>"})}
+
+function resetData(){data=JSON.parse(JSON.stringify(seed));save();renderReg();renderTask();renderCat();renderLog();toast("Démonstration réinitialisée.")}
+updateCounts();renderReg();renderTask();renderCat();renderLog();renderFinance();
+</script></body></html>
