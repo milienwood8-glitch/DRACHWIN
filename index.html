@@ -433,34 +433,29 @@ footer .small{font-size:13px;opacity:.8}
 </div></div>
 <div id="act" hidden><div class="wrap">
 <img class="lg" alt="DRACHWIN">
-<h1>Active ton compte Program Win</h1>
-<p class="motto">Complète ces informations pour accéder à Business, Bibliothèque et Sell.</p>
+<h1>Activation de ton compte Program Win</h1>
+<p class="motto">Frais d’activation : 300 HTG. Envoie le paiement puis dépose le reçu ici. Ta demande sera directement transmise à l’administration.</p>
 <form id="af" class="af">
 <label>Nom<input id="fn" autocomplete="family-name" required></label>
 <label>Prénom<input id="fp" autocomplete="given-name" required></label>
 <label>Date de naissance<input id="fd" type="date" required></label>
 <p class="aw" id="fw"></p>
 <label>Numéro de téléphone<input id="ftel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+509 00 00 0000" required></label>
-<div class="pay"><b>Frais d'activation : 300 gourdes</b><p>Envoie 300 gourdes par NatCash ou MonCash, puis ajoute la photo de ta transaction depuis ta galerie.</p>
-<p style="margin:0 0 8px;color:var(--ink)"><b>NatCash : 40023057</b><br>Nom du compte : MILIEN Wood Schadrach <button class="link" id="cpn" type="button">Copier</button></p>
-<p style="margin:0 0 10px;color:var(--ink)"><b>MonCash : 48680701</b><br>Nom du compte : Milien Luckmane <button class="link" id="cpm2" type="button">Copier</button> <span id="cpm"></span></p><input id="fx" class="fi" type="file" accept="image/*" aria-label="Photo de la transaction"><div id="fv"></div></div>
+<div class="pay"><b>Effectue un paiement de 300 HTG</b>
+<p>NatCash : <b>40023057</b> · MILIEN Wood Schadrach</p>
+<p>MonCash : <b>48680701</b> · Milien Luckmane</p>
+<label>Mode de paiement<select id="fmethod" required><option value="">Choisir NatCash ou MonCash</option><option value="NatCash">NatCash</option><option value="MonCash">MonCash</option></select></label>
+<label>Référence de transaction<input id="freference" maxlength="80" placeholder="Référence affichée sur ton reçu"></label>
+<label>Photo du reçu de paiement<input id="fx" class="fi" type="file" accept="image/*" aria-label="Photo du reçu de paiement" required></label><div id="fv"></div></div>
 <p class="aw" id="fe" role="alert"></p>
-<button class="btn" type="submit">Envoyer ma demande</button>
-<small>Pour l'instant, ces informations et ta photo restent sur ton appareil.</small>
+<button class="btn" id="fsubmit" type="submit">Envoyer ma demande à DRACHWIN</button>
 </form>
 <div id="ap2" class="af" hidden>
-<div class="rv"><span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h2>Ton compte est en examen</h2><p>Il sera prêt 3 heures après l'examen de ta demande.</p><span class="bd">Demande reçue ✓</span></div>
+<div class="rv"><span class="ck">✓</span><h2 id="fstatusTitle">Demande reçue</h2><p id="fstatusText">Ta demande est enregistrée dans le système DRACHWIN.</p><span class="bd" id="fstatusBadge">En attente</span></div>
 <p id="fsum" style="margin:0;font-weight:700"></p>
-<div id="fpv"></div>
-<p style="margin:0"><b>À faire maintenant :</b> copie ta demande, ouvre WhatsApp, colle-la, puis joins la photo de ta transaction.</p>
-<button class="btn" id="fcpy" type="button">Copier ma demande</button>
-<a class="btn" id="fwa" href="https://wa.me/message/N2O4JMOAIEIOG1" target="_blank" rel="noopener">Ouvrir WhatsApp</a>
 <p id="fcm" style="margin:0;font-size:14px;color:var(--muted)"></p>
-<p style="margin:0"><b>Ton compte est prêt ?</b> Entre le code d'activation reçu de l'équipe.</p>
-<div class="row"><input id="fcode" placeholder="Code d'activation" maxlength="8" autocapitalize="characters" autocomplete="off" aria-label="Code d'activation"><button class="mini" id="fgo" type="button">Activer</button></div>
-<p class="aw" id="fce" role="alert"></p>
-<button class="mini" id="fown" type="button" hidden>Valider cette demande (visible uniquement par toi)</button>
-<button class="link" id="fedit" type="button">Modifier ma demande</button>
+<button class="btn" id="frefresh" type="button">Actualiser le statut</button>
+<button class="link" id="fnew" type="button" hidden>Soumettre une nouvelle demande</button>
 </div>
 <p class="acts"><button class="link" id="achg" type="button">Changer de programme</button> · <button class="link" id="aout" type="button">Se déconnecter</button></p>
 </div></div>
@@ -673,7 +668,10 @@ function get(){var c=curEmail(),A=accts();return c&&A[c]?A[c]:null}
 function set(v){try{var A=accts();A[v.email]=v;localStorage.setItem('drachwin_accts',JSON.stringify(A));localStorage.setItem('drachwin_cur',v.email)}catch(e){}}
 function del(){try{localStorage.removeItem('drachwin_session');localStorage.removeItem('drachwin_prog')}catch(e){}}
 function getP(){try{return localStorage.getItem('drachwin_prog')}catch(e){return null}}
-function apply(p){gate.hidden=true;choose.hidden=true;if(ACT_ON&&p==='win'&&!(D.act&&D.act.st==='valide')){site.hidden=true;actEl.hidden=false;drawA();window.scrollTo(0,0);return}actEl.hidden=true;site.hidden=false;var els=document.querySelectorAll('[data-prog]');for(var i=0;i<els.length;i++){var dp=els[i].getAttribute('data-prog');els[i].hidden=dp!=='all'&&dp!==p}document.getElementById('count').textContent=p==='free'?'Program Free':'Program Win';document.getElementById('ap').textContent=p==='free'?'Ton programme Free':'Ton programme Win';curP=p;route()}
+function apply(p){gate.hidden=true;choose.hidden=true;if(ACT_ON&&p==='win'){
+if(!WIN_REQUEST_LOADED){site.hidden=true;actEl.hidden=false;af.hidden=true;ap2.hidden=false;document.getElementById('fstatusTitle').textContent='Vérification de ton compte';document.getElementById('fstatusText').textContent='Connexion sécurisée à Supabase…';document.getElementById('fstatusBadge').textContent='Chargement';if(!WIN_REQUEST_LOADING){WIN_REQUEST_LOADING=true;loadProgramWinRequest().then(function(){WIN_REQUEST_LOADING=false;WIN_REQUEST_LOADED=true;apply('win')}).catch(function(e){WIN_REQUEST_LOADING=false;document.getElementById('fstatusText').textContent=e.message||'Impossible de vérifier le statut.'})}window.scrollTo(0,0);return}
+if(!WIN_REQUEST||WIN_REQUEST.status!=='approved'){site.hidden=true;actEl.hidden=false;drawA();window.scrollTo(0,0);return}}
+actEl.hidden=true;site.hidden=false;var els=document.querySelectorAll('[data-prog]');for(var i=0;i<els.length;i++){var dp=els[i].getAttribute('data-prog');els[i].hidden=dp!=='all'&&dp!==p}document.getElementById('count').textContent=p==='free'?'Program Free':'Program Win';document.getElementById('ap').textContent=p==='free'?'Ton programme Free':'Ton programme Win';curP=p;route()}
 function pick(p){try{localStorage.setItem('drachwin_prog',p)}catch(e){}apply(p)}
 function show(m){drawR();gate.hidden=true;document.getElementById('hello').textContent='Bonjour '+m.prenom;document.getElementById('who').textContent='Bonjour '+m.prenom+', par où veux-tu commencer ?';try{localStorage.setItem('drachwin_session','1')}catch(e){}var p=getP();if(p==='free'||p==='win')apply(p);else{site.hidden=true;choose.hidden=false;window.scrollTo(0,0)}}
 var D={goals:[],tasks:[]};try{var t0=JSON.parse(localStorage.getItem('drachwin_perso_'+CUR0));if(t0)D=t0}catch(e){}
@@ -903,26 +901,36 @@ var curP=null;
 function route(){if(!curP)return;var id=location.hash.slice(1),secs=document.querySelectorAll('section[data-prog]'),part=false;for(var i=0;i<secs.length;i++){var on=secs[i].id===id&&(secs[i].getAttribute('data-prog')===curP||secs[i].getAttribute('data-prog')==='all');secs[i].classList.toggle('on',on);if(on)part=true}site.className=part?'part':'';if(part&&id==='profil')drawP();var na=document.querySelectorAll('nav a'),cu=part?id:'apercu';for(var j=0;j<na.length;j++)na[j].classList.toggle('on',na[j].getAttribute('href')==='#'+cu);var t=document.getElementById(id);if(!part&&id==='finaliser'&&t)t.scrollIntoView();else window.scrollTo(0,0)}
 window.addEventListener('hashchange',route);
 var OWN=false,ACT_ON=!TEST,actEl=document.getElementById('act'),af=document.getElementById('af'),ap2=document.getElementById('ap2'),fxFile=null,fvUrl=null;
+var WIN_REQUEST=null,WIN_REQUEST_LOADED=false,WIN_REQUEST_LOADING=false,WIN_PROFILE=null;
 function age(v){var b=new Date(v);if(isNaN(b))return -1;var n=new Date(),a=n.getFullYear()-b.getFullYear(),m=n.getMonth()-b.getMonth();if(m<0||(m===0&&n.getDate()<b.getDate()))a--;return a}
-function fshow(box,f){box.textContent='';if(!f)return;var i=document.createElement('img');i.src=URL.createObjectURL(f);i.alt='Photo de la transaction';box.appendChild(i)}
-function drawA(){var a=D.act;if(a&&a.st==='attente'){af.hidden=true;ap2.hidden=false;document.getElementById('fsum').textContent=a.prenom+' '+a.nom+' · '+a.tel;var ac=get()||{},dn=(a.dob||'').split('-').reverse().join('/'),tx="Bonjour DRACHWIN, je demande l'activation de mon compte Program Win.\nNom : "+a.nom+"\nPrénom : "+a.prenom+"\nDate de naissance : "+dn+"\nTéléphone : "+a.tel+"\nE-mail : "+(ac.email||'')+(ac.st?"\nStatut : "+ac.st+(ac.et?" ("+ac.et+")":""):"")+"\nCode de parrainage : "+(ac.ref||'aucun')+(a.rn?"\nResponsable : "+a.rn+" ("+a.rt+")":"")+"\nJe joins la photo de ma transaction (NatCash ou MonCash) de 300 gourdes.";FTX=tx;pGet('act',function(f){fshow(document.getElementById('fpv'),f)})}else{af.hidden=false;ap2.hidden=true;var mm=get()||{};[['fn','nom'],['fp','prenom'],['fd','dob'],['ftel','tel']].forEach(function(x){var e=document.getElementById(x[0]);if(!e.value)e.value=mm[x[1]]||''});var fdE=document.getElementById('fd');if(fdE.onchange)fdE.onchange.call(fdE)}}
+function fshow(box,f){box.textContent='';if(f){var i=document.createElement('img');i.src=URL.createObjectURL(f);i.alt='Reçu de paiement';i.style.cssText='max-width:100%;max-height:260px;border-radius:10px';box.appendChild(i)}}
+async function loadProgramWinRequest(){
+ if(!supabaseClient)throw new Error('Connexion Supabase indisponible.');
+ var ur=await supabaseClient.auth.getUser(),u=ur&&ur.data&&ur.data.user;if(ur.error||!u)throw new Error('Reconnecte-toi à ton compte.');
+ var pr=await supabaseClient.from('member_profiles').select('nom,prenom,dob,tel').eq('user_id',u.id).maybeSingle();if(pr.error)throw pr.error;WIN_PROFILE=pr.data||{};
+ var qr=await supabaseClient.from('program_win_requests').select('id,user_id,status,submitted_at,reviewed_at,admin_note,payment_method,payment_reference,proof_path,proof_mime,proof_size,amount').eq('user_id',u.id).order('submitted_at',{ascending:false}).limit(1).maybeSingle();
+ if(qr.error)throw qr.error;WIN_REQUEST=qr.data||null;
+}
+function drawA(){
+ var pending=WIN_REQUEST&&WIN_REQUEST.status==='pending',rejected=WIN_REQUEST&&WIN_REQUEST.status==='rejected';
+ if(pending||rejected){af.hidden=true;ap2.hidden=false;document.getElementById('fstatusTitle').textContent=pending?'Demande reçue':'Demande refusée';document.getElementById('fstatusText').textContent=pending?'Ta demande et ton reçu sont enregistrés dans DRACHWIN. Attends la vérification de l’administration.':'Ta demande a été refusée. Consulte le motif, puis envoie une nouvelle demande avec un reçu correct.';document.getElementById('fstatusBadge').textContent=pending?'En attente de vérification':'Refusée';document.getElementById('fsum').textContent=(WIN_PROFILE&&WIN_PROFILE.prenom||'')+' '+(WIN_PROFILE&&WIN_PROFILE.nom||'')+' · 300 HTG';document.getElementById('fcm').textContent=rejected?(WIN_REQUEST.admin_note||'Aucun motif précisé par l’administration.'):'Le suivi est automatique : tu n’as pas besoin d’envoyer un message WhatsApp.';document.getElementById('fnew').hidden=!rejected;return}
+ af.hidden=false;ap2.hidden=true;var mm=WIN_PROFILE||{};[['fn','nom'],['fp','prenom'],['fd','dob'],['ftel','tel']].forEach(function(x){var e=document.getElementById(x[0]);if(!e.value)e.value=mm[x[1]]||''});
+}
 document.getElementById('fd').onchange=function(){var a=age(this.value),w=document.getElementById('fw');w.textContent=a<0?'':a<18?"L'activation est réservée aux personnes de 18 ans et plus.":''};
-document.getElementById('fx').onchange=function(){var f=this.files&&this.files[0],er=document.getElementById('fe');this.value='';if(!f)return;if(f.type.indexOf('image/')!==0){er.textContent='Choisis une photo.';return}if(f.size>15*1048576){er.textContent='Photo trop lourde (15 Mo maximum).';return}er.textContent='';fxFile=f;fshow(document.getElementById('fv'),f)};
-af.onsubmit=function(e){e.preventDefault();var er=document.getElementById('fe'),g=function(i){return document.getElementById(i).value.trim()},tel=g('ftel').replace(/\D/g,'');er.textContent='';if(age(g('fd'))<18){er.textContent="L'activation est réservée aux personnes de 18 ans et plus.";return}if(!(tel.length===8||(tel.length===11&&tel.indexOf('509')===0))){er.textContent='Entre un numéro de téléphone haïtien valide (8 chiffres).';return}if(!fxFile){er.textContent='Ajoute la photo de ta transaction.';return}pSet('act',fxFile,function(ok){if(!ok){er.textContent="Impossible d'enregistrer la photo ici.";return}D.act={nom:g('fn'),prenom:g('fp'),dob:g('fd'),tel:tel,rn:'',rt:'',st:'attente',t:Date.now()};sv();drawA()})};
-document.getElementById('fedit').onclick=function(){var a=D.act||{};D.act=null;sv();pDel('act');fxFile=null;document.getElementById('fv').textContent='';document.getElementById('fn').value=a.nom||'';document.getElementById('fp').value=a.prenom||'';document.getElementById('fd').value=a.dob||'';document.getElementById('ftel').value=a.tel||'';drawA()};
+document.getElementById('fx').onchange=function(){var f=this.files&&this.files[0],er=document.getElementById('fe');if(!f)return;if(f.type.indexOf('image/')!==0){er.textContent='Choisis une photo.';this.value='';return}if(f.size>15*1048576){er.textContent='Photo trop lourde (15 Mo maximum).';this.value='';return}er.textContent='';fxFile=f;fshow(document.getElementById('fv'),f)};
+af.onsubmit=async function(e){e.preventDefault();var er=document.getElementById('fe'),btn=document.getElementById('fsubmit'),g=function(i){return document.getElementById(i).value.trim()},tel=g('ftel').replace(/\D/g,'');er.textContent='';if(age(g('fd'))<18){er.textContent="L'activation est réservée aux personnes de 18 ans et plus.";return}if(!(tel.length===8||(tel.length===11&&tel.indexOf('509')===0))){er.textContent='Entre un numéro de téléphone haïtien valide (8 chiffres).';return}if(!g('fmethod')){er.textContent='Choisis NatCash ou MonCash.';return}if(!fxFile){er.textContent='Ajoute la photo de ton reçu de paiement.';return}if(WIN_REQUEST&&WIN_REQUEST.status==='pending'){er.textContent='Une demande est déjà en attente.';return}if(WIN_REQUEST&&WIN_REQUEST.status==='approved'){er.textContent='Ton compte Program Win est déjà activé.';return}
+ btn.disabled=true;btn.textContent='Envoi en cours…';try{var ur=await supabaseClient.auth.getUser(),u=ur&&ur.data&&ur.data.user;if(ur.error||!u)throw new Error('Reconnecte-toi à ton compte.');var safe=fxFile.name.replace(/[^a-zA-Z0-9._-]/g,'_').slice(-80)||'recu.jpg',path=u.id+'/'+Date.now()+'_'+safe;var up=await supabaseClient.storage.from('program-win-proofs').upload(path,fxFile,{contentType:fxFile.type,upsert:false});if(up.error)throw up.error;var ins=await supabaseClient.from('program_win_requests').insert({user_id:u.id,status:'pending',payment_method:g('fmethod'),payment_reference:g('freference')||null,proof_path:path,proof_mime:fxFile.type,proof_size:fxFile.size,amount:300}).select('id,user_id,status,submitted_at,reviewed_at,admin_note,payment_method,payment_reference,proof_path,proof_mime,proof_size,amount').single();if(ins.error){await supabaseClient.storage.from('program-win-proofs').remove([path]);throw ins.error}WIN_REQUEST=ins.data;WIN_REQUEST_LOADED=true;fxFile=null;document.getElementById('fv').textContent='';drawA();}catch(ex){er.textContent=ex.message||"Impossible d'envoyer la demande. Réessaie."}finally{btn.disabled=false;btn.textContent='Envoyer ma demande à DRACHWIN'}};
+document.getElementById('frefresh').onclick=async function(){var b=this;b.disabled=true;try{await loadProgramWinRequest();WIN_REQUEST_LOADED=true;if(WIN_REQUEST&&WIN_REQUEST.status==='approved'){apply('win')}else drawA()}catch(e){document.getElementById('fcm').textContent=e.message||'Erreur de vérification.'}finally{b.disabled=false}};
+document.getElementById('fnew').onclick=function(){WIN_REQUEST=null;fxFile=null;document.getElementById('fv').textContent='';document.getElementById('fe').textContent='';document.getElementById('fx').value='';drawA()};
 document.getElementById('achg').onclick=function(){try{localStorage.removeItem('drachwin_prog')}catch(e){}actEl.hidden=true;choose.hidden=false;window.scrollTo(0,0)};
 document.getElementById('aout').onclick=function(){bye()};
-document.getElementById('cpn').onclick=function(){cp('40023057',document.getElementById('cpm'))};
-document.getElementById('cpm2').onclick=function(){cp('48680701',document.getElementById('cpm'))};
 function actCode(e){var t=(e||'').toLowerCase().trim()+'|dw-sel-9x4k',h=7919;for(var i=0;i<t.length;i++)h=((h*31)^t.charCodeAt(i))>>>0;return ('000000'+h.toString(36).toUpperCase()).slice(-6)}
-document.getElementById('fcpy').onclick=function(){cp(FTX,document.getElementById('fcm'))};
-document.getElementById('fgo').onclick=function(){var v=(document.getElementById('fcode').value||'').trim().toUpperCase(),ac=get()||{},er=document.getElementById('fce');if(v&&v===actCode(ac.email)){er.textContent='';if(D.act){D.act.st='valide';sv()}apply('win')}else er.textContent="Code incorrect. Vérifie le code reçu de l'équipe."};
 document.getElementById('agen').onclick=function(){var e=document.getElementById('aem').value.trim(),r=document.getElementById('aref').value.trim().toUpperCase();document.getElementById('aco').textContent=e?actCode(r?e+':'+r:e):''};
 document.getElementById('aquit').onclick=function(){location.hash='';location.reload()};
 function chkAdm(){if(location.hash==='#gestion-dw7k2q'){[gate,choose,actEl,site,document.getElementById('pub')].forEach(function(x){x.hidden=true});document.getElementById('adm').hidden=false}}
 window.addEventListener('hashchange',chkAdm);
-document.getElementById('fown').onclick=function(){if(D.act){D.act.st='valide';sv()}apply('win')};
-try{if(window.claude&&claude.use)claude.use('user').then(function(u){if(u&&u.isOwner&&u.isOwner()){OWN=true;document.getElementById('fown').hidden=false;drawB();drawL();drawS();mcDraw()}}).catch(function(){})}catch(e){}
+
+try{if(window.claude&&claude.use)claude.use('user').then(function(u){if(u&&u.isOwner&&u.isOwner()){OWN=true;drawB();drawL();drawS();mcDraw()}}).catch(function(){})}catch(e){}
 function simF(){var B=D.biz||{},r={aide:0,reserve:0,mv:[]};function add(l){var t=LV[l-1][2];r.aide+=t*.3;r.reserve+=t*.2;r.mv.push('Niveau '+l+' · tableau complet · +'+nf(t*.3)+' G aide sociale · +'+nf(t*.2)+' G réserve (simulation)')}if(((B.t&&B.t[1])||[]).length>=10)add(1);TBS().forEach(function(t){if(t.m.length>=10)add(t.l)});var ex=Math.max(0,((B.t&&B.t[1])||[]).length-10);if(ex){r.aide+=ex*150;r.mv.push(ex+' filleul(s) supplémentaire(s) · +'+nf(ex*150)+" G caisse d'aide (simulation)")}return r}
 var FONDS={aide:0,reserve:0,maj:'14 octobre 2026',mv:[]};
 function drawF(box){var SIM=simF(),MV=FONDS.mv.concat(OWN?SIM.mv:[]);box.textContent='';[["Fonds commun d'aide sociale",'aide','30 % de chaque tableau complété'],['Réserve commune de fonctionnement','reserve','20 % de chaque tableau complété']].forEach(function(x){var c=el('div','coins');c.appendChild(el('small','',x[0]));c.appendChild(el('b','amt',nf(FONDS[x[1]]+(OWN?SIM[x[1]]:0))+' G'));c.appendChild(el('p','',x[2]));if(OWN&&SIM[x[1]]>0)c.appendChild(el('p','pm','dont '+nf(SIM[x[1]])+' G simulés (visible uniquement par toi)'));box.appendChild(c)});
@@ -1039,7 +1047,7 @@ function sellTab(t){var m=t==='mache';document.getElementById('mache').hidden=!m
 document.getElementById('tmache').onclick=function(){sellTab('mache')};document.getElementById('tcomm').onclick=function(){sellTab('comm')};
 mcCrit(document.getElementById('mcf'));mcDraw();
 setInterval(function(){var b=document.querySelectorAll('#mache .mccd');for(var i=0;i<b.length;i++){var l=+b[i].getAttribute('data-t')-Date.now();if(l<=0){mcDraw();return}b[i].textContent=fmt3(l)}},1000);
-function drawP(){var a=get()||{},box=document.getElementById('pfl'),c=el('div','quiz'),top=el('div','ptop'),A=accts(),p=getP(),dn=(a.dob||'').split('-').reverse().join('/'),tl=a.tel?'+509 '+a.tel.replace(/(\d{2})(?=\d)/g,'$1 '):'',act=D.act&&D.act.st==='valide'?'Activé':(D.act&&D.act.st==='attente'?'En attente':'Non demandé');box.textContent='';
+function drawP(){var a=get()||{},box=document.getElementById('pfl'),c=el('div','quiz'),top=el('div','ptop'),A=accts(),p=getP(),dn=(a.dob||'').split('-').reverse().join('/'),tl=a.tel?'+509 '+a.tel.replace(/(\d{2})(?=\d)/g,'$1 '):'',act=WIN_REQUEST&&WIN_REQUEST.status==='approved'?'Activé':(WIN_REQUEST&&WIN_REQUEST.status==='pending'?'En attente':(WIN_REQUEST&&WIN_REQUEST.status==='rejected'?'Refusé':'Non demandé'));box.textContent='';
 top.appendChild(el('div','av',((a.prenom||'?').charAt(0)+(a.nom||'').charAt(0)).toUpperCase()));var nm=el('div','pn');nm.appendChild(el('b','',((a.prenom||'')+' '+(a.nom||'')).trim()||'Membre'));nm.appendChild(el('span','',a.st?a.st+(a.et?' · '+a.et:''):''));top.appendChild(nm);c.appendChild(top);
 [['Nom',a.nom],['Prénom',a.prenom],['Date de naissance',dn],['Téléphone',tl],['E-mail',a.email],['Code de parrainage utilisé',a.ref||'aucun'],['Mon code de parrainage',a.email?mycode():''],['Programme',p==='free'?'Free':p==='win'?'Win':''],['Compte Win',act]].forEach(function(x){if(!x[1])return;var r=el('div','prow');r.appendChild(el('span','',x[0]));r.appendChild(el('b','',x[1]));c.appendChild(r)});
 box.appendChild(c);
