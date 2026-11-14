@@ -29,7 +29,7 @@ input,select,textarea{font:inherit;border:1px solid var(--line);border-radius:7p
 .auth-card label{display:block;font-size:12px;font-weight:700;margin:15px 0 6px}.auth-card input{width:100%;padding:12px}.auth-card .btn{width:100%;padding:12px;margin-top:18px}.auth-error{color:var(--red)!important;min-height:18px}
 #appRoot{display:none}
 </style></head><body>
-<div id="authGate"><form class="auth-card" id="adminLogin"><div class="brand" style="padding:0 0 18px;color:var(--navy)">DRACHWIN<small style="color:var(--muted)">ADMINISTRATION</small></div><h1>Connexion administrateur</h1><p>Connecte-toi avec le compte DRACHWIN autorisé dans Supabase.</p><label for="adminEmail">Adresse e-mail</label><input id="adminEmail" type="email" autocomplete="username" required value=""><label for="adminPassword">Mot de passe</label><input id="adminPassword" type="password" autocomplete="current-password" required><button class="btn" id="adminLoginBtn" type="submit">Se connecter</button><p class="auth-error" id="authError" role="alert"></p></form></div>
+<div id="authGate"><div class="auth-card"><div class="brand" style="padding:0 0 18px;color:var(--navy)">DRACHWIN<small style="color:var(--muted)">ADMINISTRATION</small></div><form id="adminLogin"><h1>Connexion administrateur</h1><p>Connecte-toi avec le compte DRACHWIN autorisé dans Supabase.</p><label for="adminEmail">Adresse e-mail</label><input id="adminEmail" type="email" autocomplete="username" required value=""><label for="adminPassword">Mot de passe</label><input id="adminPassword" type="password" autocomplete="current-password" required><button class="btn" id="adminLoginBtn" type="submit">Se connecter</button><p style="text-align:right;margin:10px 0 0"><a href="#" id="forgotPasswordLink" style="color:var(--blue);font-size:12px">Mot de passe oublié ?</a></p><p class="auth-error" id="authError" role="alert"></p></form><form id="passwordRecoveryForm" style="display:none"><h1>Réinitialiser le mot de passe</h1><p>Choisis un nouveau mot de passe pour ton compte administrateur.</p><label for="newAdminPassword">Nouveau mot de passe</label><input id="newAdminPassword" type="password" autocomplete="new-password" minlength="8" required><label for="confirmAdminPassword">Confirmer le mot de passe</label><input id="confirmAdminPassword" type="password" autocomplete="new-password" minlength="8" required><button class="btn" id="saveNewPasswordBtn" type="submit">Enregistrer le nouveau mot de passe</button><p class="auth-error" id="recoveryError" role="alert"></p></form></div></div>
 <div id="appRoot">
 <div class="app">
 <aside><div class="brand">DRACHWIN<small>ADMINISTRATION</small></div><nav>
@@ -92,11 +92,60 @@ function showAdminApp(user){
   const top = document.querySelector(".top");
   if(top && !document.getElementById("adminSignOut")){const b=document.createElement("button");b.id="adminSignOut";b.className="btn light";b.textContent="Déconnexion";b.onclick=async()=>{await adminSupabase.auth.signOut();location.reload()};top.appendChild(b)}
 }
+function showPasswordRecovery(){
+  document.getElementById("adminLogin").style.display="none";
+  document.getElementById("passwordRecoveryForm").style.display="block";
+  document.getElementById("authError").textContent="";
+  authGate.style.display="flex";appRoot.style.display="none";
+}
+adminSupabase.auth.onAuthStateChange((event)=>{
+  if(event==="PASSWORD_RECOVERY") showPasswordRecovery();
+});
 async function verifyAdminSession(){
   const {data,error}=await adminSupabase.auth.getSession();
   if(error) throw error;
+  const recoveryRequested=new URLSearchParams(location.search).get("reset-password")==="1";
+  if(recoveryRequested && data.session){showPasswordRecovery();return;}
   if(data.session) showAdminApp(data.session.user);
 }
+document.getElementById("forgotPasswordLink").addEventListener("click",async e=>{
+  e.preventDefault();
+  const email=document.getElementById("adminEmail").value.trim();
+  const err=document.getElementById("authError");
+  if(!email){err.textContent="Entre d’abord ton adresse e-mail.";document.getElementById("adminEmail").focus();return;}
+  const link=document.getElementById("forgotPasswordLink");link.textContent="Envoi en cours…";link.style.pointerEvents="none";err.textContent="";
+  try{
+    const redirectTo=location.origin+location.pathname+"?reset-password=1";
+    const {error}=await adminSupabase.auth.resetPasswordForEmail(email,{redirectTo});
+    if(error) throw error;
+    err.style.color="var(--green)";err.textContent="Si cette adresse correspond à un compte, un e-mail de réinitialisation vient d’être envoyé. Vérifie aussi tes courriers indésirables.";
+  }catch(ex){err.style.color="var(--red)";err.textContent=ex.message||"Impossible d’envoyer l’e-mail de réinitialisation.";}
+  finally{link.textContent="Mot de passe oublié ?";link.style.pointerEvents="auto";}
+});
+document.getElementById("passwordRecoveryForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const password=document.getElementById("newAdminPassword").value;
+  const confirmation=document.getElementById("confirmAdminPassword").value;
+  const err=document.getElementById("recoveryError"),btn=document.getElementById("saveNewPasswordBtn");
+  err.textContent="";err.style.color="var(--red)";
+  if(password.length<8){err.textContent="Le mot de passe doit contenir au moins 8 caractères.";return;}
+  if(password!==confirmation){err.textContent="Les deux mots de passe ne correspondent pas.";return;}
+  btn.disabled=true;btn.textContent="Enregistrement…";
+  try{
+    const {data,error}=await adminSupabase.auth.updateUser({password});
+    if(error) throw error;
+    const cleanUrl=location.origin+location.pathname;
+    history.replaceState({},document.title,cleanUrl);
+    document.getElementById("passwordRecoveryForm").style.display="none";
+    document.getElementById("adminLogin").style.display="block";
+    document.getElementById("adminEmail").value=(data.user&&data.user.email)||document.getElementById("adminEmail").value;
+    document.getElementById("adminPassword").value="";
+    document.getElementById("authError").style.color="var(--green)";
+    document.getElementById("authError").textContent="Mot de passe modifié. Connecte-toi avec ton nouveau mot de passe.";
+    await adminSupabase.auth.signOut();
+  }catch(ex){err.textContent=ex.message||"La modification du mot de passe a échoué. Demande un nouveau lien.";}
+  finally{btn.disabled=false;btn.textContent="Enregistrer le nouveau mot de passe";}
+});
 document.getElementById("adminLogin").addEventListener("submit",async e=>{
   e.preventDefault();const btn=document.getElementById("adminLoginBtn"),err=document.getElementById("authError");
   btn.disabled=true;btn.textContent="Connexion…";err.textContent="";
