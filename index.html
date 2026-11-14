@@ -610,26 +610,6 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <h2><span class="ico sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h13a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V5a1 1 0 0 1 1-1z"/><path d="M8 4v16"/></svg></span>Drachwin Bibliothèque</h2>
 <p class="sub">Livres numériques</p>
 <div id="lbw"></div>
-<div id="library-admin" class="coins" hidden>
- <h3>Administration de la bibliothèque</h3>
- <p class="note">Espace réservé aux comptes dont le rôle administrateur est défini côté serveur dans Supabase.</p>
- <form id="library-admin-form" class="dep">
-  <input type="hidden" id="la-id">
-  <label>Titre du livre<input id="la-title" maxlength="180" required></label>
-  <label>Auteur<input id="la-author" maxlength="140" required></label>
-  <label>Description<textarea id="la-description" rows="3"></textarea></label>
-  <label>Catégorie<select id="la-category"><option>Court ou simple</option><option>Intermédiaire</option><option>Spécialisé</option><option>Grande valeur</option></select></label>
-  <label>Coût en Coins<select id="la-cost"><option value="4">4 Coins</option><option value="6" selected>6 Coins</option><option value="10">10 Coins</option><option value="15">15 Coins</option></select></label>
-  <label>Lien de couverture (URL)<input id="la-cover" type="url" placeholder="https://..."></label>
-  <label>Fichier PDF (max. 50 Mo)<input id="la-pdf" type="file" accept="application/pdf,.pdf"></label>
-  <label><input id="la-published" type="checkbox"> Publier immédiatement</label>
-  <button class="btn" id="la-save" type="submit">Enregistrer le livre</button>
-  <button class="link" id="la-cancel" type="button">Annuler la modification</button>
-  <p id="la-message" role="status"></p>
- </form>
- <h3>Livres enregistrés</h3><div id="library-admin-list"></div>
- <h3>Demandes des membres</h3><div id="library-admin-orders"></div>
-</div>
 <h3>Questions fréquentes</h3>
 <div class="faq">
 <details><summary>Comment obtenir un livre ?</summary><p>Choisis-le dans le catalogue et échange tes Coins. Le PDF est envoyé à ton e-mail en moins de 24 h.</p></details>
@@ -1013,16 +993,12 @@ async function loadLibrary(){
  try{
   var ss=await supabaseClient.auth.getSession(),user=ss.data&&ss.data.session&&ss.data.session.user;
   if(!user){box.textContent='Connecte-toi pour consulter la bibliothèque.';return}
-  var isLibAdmin=!!(user.app_metadata&&user.app_metadata.role==='admin');
-  document.getElementById('library-admin').hidden=!isLibAdmin;
-  var bookQuery=supabaseClient.from('library_books').select('id,title,author,description,category,coin_cost,cover_url,pdf_path,is_published').order('created_at',{ascending:false});
-  if(!isLibAdmin)bookQuery=bookQuery.eq('is_published',true);
-  var orderQuery=supabaseClient.from('library_orders').select('id,book_id,coin_cost,status,requested_at,library_books(title)').order('requested_at',{ascending:false});
-  if(!isLibAdmin)orderQuery=orderQuery.eq('user_id',user.id);
+  var bookQuery=supabaseClient.from('library_books').select('id,title,author,description,category,coin_cost,cover_url,pdf_path,is_published').eq('is_published',true).order('created_at',{ascending:false});
+  var orderQuery=supabaseClient.from('library_orders').select('id,book_id,coin_cost,status,requested_at,library_books(title)').eq('user_id',user.id).order('requested_at',{ascending:false});
   var results=await Promise.all([bookQuery,orderQuery]);
   if(results[0].error)throw results[0].error;
   if(results[1].error)throw results[1].error;
-  BOOKS=results[0].data||[];LIB_ORDERS=results[1].data||[];drawL();if(isLibAdmin)drawLibraryAdmin();
+  BOOKS=results[0].data||[];LIB_ORDERS=results[1].data||[];drawL();
  }catch(e){console.error('Bibliothèque DRACHWIN:',e);box.textContent='Impossible de charger la bibliothèque. Vérifie ta connexion puis réessaie.'}
 }
 function drawL(){
@@ -1041,24 +1017,6 @@ function drawL(){
  if(LIB_ORDERS.length){box.appendChild(el('h3','','Mes demandes'));var ul=el('ul','chk');LIB_ORDERS.forEach(function(o){var title=o.library_books&&o.library_books.title||'Livre demandé',status={pending:'En attente de traitement',approved:'Approuvée',sent:'PDF envoyé',rejected:'Refusée'}[o.status]||o.status,li=el('li');li.appendChild(el('span','',title+' · '+o.coin_cost+' Coins · '+status));ul.appendChild(li)});box.appendChild(ul)}
 }
 
-async function drawLibraryAdmin(){
- var list=document.getElementById('library-admin-list'),orders=document.getElementById('library-admin-orders');list.textContent='';orders.textContent='';
- BOOKS.forEach(function(b){var row=el('div','bk'),meta=el('p','note',(b.is_published?'Publié':'Brouillon')+' · '+b.coin_cost+' Coins');row.appendChild(el('b','',b.title));row.appendChild(el('p','',b.author));row.appendChild(meta);var edit=el('button','mini','Modifier');edit.type='button';edit.onclick=function(){document.getElementById('la-id').value=b.id;document.getElementById('la-title').value=b.title;document.getElementById('la-author').value=b.author;document.getElementById('la-description').value=b.description||'';document.getElementById('la-category').value=b.category||'Intermédiaire';document.getElementById('la-cost').value=String(b.coin_cost);document.getElementById('la-cover').value=b.cover_url||'';document.getElementById('la-published').checked=!!b.is_published;document.getElementById('la-message').textContent='Modification de : '+b.title;document.getElementById('library-admin-form').scrollIntoView({behavior:'smooth',block:'start'})};row.appendChild(edit);
- var toggle=el('button','link',b.is_published?'Retirer de la publication':'Publier');toggle.type='button';toggle.onclick=async function(){try{var r=await supabaseClient.from('library_books').update({is_published:!b.is_published,updated_at:new Date().toISOString()}).eq('id',b.id);if(r.error)throw r.error;await loadLibrary()}catch(e){alert('Modification impossible : '+e.message)}};row.appendChild(toggle);
- var del=el('button','link','Supprimer');del.type='button';del.onclick=async function(){if(!confirm('Supprimer ce livre ?'))return;try{var r=await supabaseClient.from('library_books').delete().eq('id',b.id);if(r.error)throw r.error;await loadLibrary()}catch(e){alert('Suppression impossible. Vérifie notamment les demandes déjà liées à ce livre.')}};row.appendChild(del);list.appendChild(row)});
- if(!BOOKS.length)list.appendChild(el('p','note','Aucun livre enregistré.'));
- LIB_ORDERS.forEach(function(o){var row=el('div','bk'),title=o.library_books&&o.library_books.title||'Livre demandé';row.appendChild(el('b','',title));row.appendChild(el('p','',o.coin_cost+' Coins · '+o.status));var sel=document.createElement('select');[['pending','En attente'],['approved','Approuvée'],['sent','PDF envoyé'],['rejected','Refusée']].forEach(function(x){var op=document.createElement('option');op.value=x[0];op.textContent=x[1];sel.appendChild(op)});sel.value=o.status;row.appendChild(sel);var save=el('button','mini','Mettre à jour');save.type='button';save.onclick=async function(){try{var r=await supabaseClient.from('library_orders').update({status:sel.value,processed_at:new Date().toISOString()}).eq('id',o.id);if(r.error)throw r.error;await loadLibrary()}catch(e){alert('Mise à jour impossible : '+e.message)}};row.appendChild(save);orders.appendChild(row)});
- if(!LIB_ORDERS.length)orders.appendChild(el('p','note','Aucune demande reçue.'));
-}
-function resetLibraryAdmin(){['la-id','la-title','la-author','la-description','la-cover'].forEach(function(id){document.getElementById(id).value=''});document.getElementById('la-cost').value='6';document.getElementById('la-category').value='Intermédiaire';document.getElementById('la-pdf').value='';document.getElementById('la-published').checked=false;}
-document.getElementById('la-cancel').onclick=resetLibraryAdmin;
-document.getElementById('library-admin-form').onsubmit=async function(e){e.preventDefault();var msg=document.getElementById('la-message'),btn=document.getElementById('la-save');btn.disabled=true;msg.textContent='Enregistrement…';try{
- var session=await supabaseClient.auth.getSession(),u=session.data&&session.data.session&&session.data.session.user;if(!u||!u.app_metadata||u.app_metadata.role!=='admin')throw new Error('Accès administrateur requis.');
- var id=document.getElementById('la-id').value||null,pdf=document.getElementById('la-pdf').files[0],pdfPath=null;
- if(pdf){if(pdf.type!=='application/pdf'||pdf.size>50*1048576)throw new Error('Choisis un PDF de 50 Mo maximum.');pdfPath=(id||crypto.randomUUID())+'/'+Date.now()+'-'+pdf.name.replace(/[^a-zA-Z0-9._-]/g,'_');var up=await supabaseClient.storage.from('drachwin-library').upload(pdfPath,pdf,{contentType:'application/pdf',upsert:false});if(up.error)throw up.error;}
- var payload={title:document.getElementById('la-title').value.trim(),author:document.getElementById('la-author').value.trim(),description:document.getElementById('la-description').value.trim(),category:document.getElementById('la-category').value,coin_cost:Number(document.getElementById('la-cost').value),cover_url:document.getElementById('la-cover').value.trim()||null,is_published:document.getElementById('la-published').checked,updated_at:new Date().toISOString()};if(pdfPath)payload.pdf_path=pdfPath;
- var q=id?supabaseClient.from('library_books').update(payload).eq('id',id):supabaseClient.from('library_books').insert(payload);var saved=await q;if(saved.error)throw saved.error;msg.textContent='Livre enregistré avec succès.';resetLibraryAdmin();await loadLibrary();
- }catch(err){console.error(err);msg.textContent='Erreur : '+(err.message||'Enregistrement impossible.')}finally{btn.disabled=false;}};
 
 loadLibrary();
 var ART=[{n:"Boîte de savon artisanal",p:500},{n:"Lampe solaire",p:1000},{n:"Sac à dos étanche",p:2500},{n:"Casque audio sans fil",p:5000},{n:"Montre connectée",p:10000}];
