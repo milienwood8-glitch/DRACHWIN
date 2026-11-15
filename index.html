@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DRACHWIN – Une plateforme. Plusieurs opportunités. Un seul espace.</title>
-<meta name="description" content="DRACHWIN : une plateforme, plusieurs opportunités, un seul espace. Accompagnement, bibliothèque, portefeuille et commerce.">
-<meta property="og:title" content="DRACHWIN – Une plateforme. Plusieurs opportunités. Un seul espace.">
-<meta property="og:description" content="Apprends, développe tes compétences et accède à des opportunités, dans un seul espace.">
+<title>DRACHWIN – Le pouvoir de gagner</title>
+<meta name="description" content="DRACHWIN accompagne les jeunes de 18 à 30 ans : coaching, tâches, livres et parrainage. Le pouvoir de gagner.">
+<meta property="og:title" content="DRACHWIN – Le pouvoir de gagner">
+<meta property="og:description" content="Apprends, avance et gagne : pour les jeunes de 18 à 30 ans.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://drachwin.netlify.app/">
-<meta name="theme-color" content="#14275C">
+<meta name="theme-color" content="#1f2a2a">
 <link rel="canonical" href="https://drachwin.netlify.app/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
 <style>
-:root{--bg:#FBF7EC;--surface:#FFFFFF;--ink:#0F1D4A;--muted:#33406B;--blue:#14275C;--red:#FF6B1A;--gold:#FF6B1A;--line:#E4DCC6;--hero:#14275C;--hero-ink:#FBF7EC;--soft:#F1EAD6;--chip:rgba(251,247,236,.14);--dark:#14275C;--dark-ink:#FBF7EC;--btn:#14275C;--btn-ink:#FBF7EC;--err:#B3361A;
+:root{--bg:#faf7f0;--surface:#fffdf8;--ink:#1f2a2a;--muted:#5b6563;--blue:#7a5f16;--red:#c4a24a;--gold:#c4a24a;--line:#e3dcc9;--hero:#f1ebdc;--hero-ink:#1f2a2a;--soft:#efe8d6;--chip:rgba(31,42,42,.08);--dark:#1f2a2a;--dark-ink:#faf7f0;--btn:#1f2a2a;--btn-ink:#faf7f0;--err:#9c2b2b;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1330;--surface:#131D44;--ink:#E6F0FB;--muted:#9FB6D3;--blue:#BFD9F2;--red:#FFB020;--gold:#FFB020;--line:#26325E;--hero:#131D44;--hero-ink:#E6F0FB;--soft:#1B2756;--chip:rgba(255,255,255,.1);--dark:#070C20;--dark-ink:#E6F0FB;--btn:#FFB020;--btn-ink:#0B1330;--err:#FF9A8A;}}
-:root[data-theme="dark"]{--bg:#0B1330;--surface:#131D44;--ink:#E6F0FB;--muted:#9FB6D3;--blue:#BFD9F2;--red:#FFB020;--gold:#FFB020;--line:#26325E;--hero:#131D44;--hero-ink:#E6F0FB;--soft:#1B2756;--chip:rgba(255,255,255,.1);--dark:#070C20;--dark-ink:#E6F0FB;--btn:#FFB020;--btn-ink:#0B1330;--err:#FF9A8A;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141b1b;--surface:#1d2727;--ink:#f3efe4;--muted:#a9b3b0;--blue:#d9b85c;--red:#c4a24a;--line:#2f3b3b;--hero:#1d2727;--hero-ink:#f3efe4;--soft:#263232;--chip:rgba(255,255,255,.1);--dark:#0f1515;--dark-ink:#f3efe4;--btn:#c4a24a;--btn-ink:#141b1b;--err:#ff9a9a;--gold:#c4a24a}}
+:root[data-theme="dark"]{--bg:#141b1b;--surface:#1d2727;--ink:#f3efe4;--muted:#a9b3b0;--blue:#d9b85c;--red:#c4a24a;--line:#2f3b3b;--hero:#1d2727;--hero-ink:#f3efe4;--soft:#263232;--chip:rgba(255,255,255,.1);--dark:#0f1515;--dark-ink:#f3efe4;--btn:#c4a24a;--btn-ink:#141b1b;--err:#ff9a9a;--gold:#c4a24a}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;font-size:16px}
@@ -386,31 +386,10 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 
 
 .library-cover{display:block;border-radius:10px;margin:8px 0 12px;box-shadow:0 3px 12px rgba(0,0,0,.12)}
-.hero p,#choose .motto,.card span{opacity:1}
-.tag,.meta,.sub,.card dd{font-weight:500}
-@keyframes drw-spin{to{transform:rotate(360deg)}}
-#go:disabled,.busy{position:relative;color:transparent!important;pointer-events:none}
-#go:disabled::after,.busy::after{content:"";position:absolute;inset:0;margin:auto;width:20px;height:20px;border:3px solid var(--btn-ink);border-right-color:transparent;border-radius:50%;animation:drw-spin .7s linear infinite}
-.link.busy::after{border-color:var(--ink);border-right-color:transparent}
-#npf{display:grid;gap:12px;text-align:left}
-#npf[hidden]{display:none}
-#npf label{display:grid;gap:4px;font-weight:600}
-#npf input{font:inherit;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink)}
-#npm{margin:0;min-height:1.4em;font-size:14px}
-/* FAQ : couleurs lisibles dans les deux thèmes */
-:root{--faq-bg:#14275C;--faq-ink:#FBF7EC;--faq-line:rgba(251,247,236,.28);--faq-acc:#FF6B1A;--faq-th:rgba(251,247,236,.16)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--faq-bg:rgba(255,255,255,.08);--faq-ink:#E6F0FB;--faq-line:rgba(255,255,255,.25);--faq-acc:#FFB020;--faq-th:rgba(255,255,255,.12)}}
-:root[data-theme="dark"]{--faq-bg:rgba(255,255,255,.08);--faq-ink:#E6F0FB;--faq-line:rgba(255,255,255,.25);--faq-acc:#FFB020;--faq-th:rgba(255,255,255,.12)}
-.faq details,#gate .faq details{background:var(--faq-bg);color:var(--faq-ink);border-color:var(--faq-line)}
-.faq details[open] summary,#gate .faq details[open] summary{border-color:var(--faq-line)}
-.faq summary,.faq details p,.faq details li,.faq details dd{color:var(--faq-ink)}
-.faq summary::after,#gate .faq summary::after{color:var(--faq-acc)}
-.faq .scroll{background:transparent;border-color:var(--faq-line)}
-.faq th{background:var(--faq-th);color:var(--faq-ink)}
-.faq td{color:var(--faq-ink);border-color:var(--faq-line)}
-.faq td.n,.faq .split b{color:var(--faq-acc)}
-.faq .split div{background:var(--faq-th);border-color:var(--faq-line)}
-.faq .split small{color:var(--faq-ink)}
+
+@keyframes drachwinSpin{to{transform:rotate(360deg)}}
+button.is-loading{opacity:.78;cursor:progress!important;position:relative}
+button.is-loading:after{content:'';display:inline-block;width:13px;height:13px;margin-left:9px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;vertical-align:-2px;animation:drachwinSpin .7s linear infinite}
 </style>
 </head>
 <body>
@@ -419,8 +398,8 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <svg class="sp s1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="sp s2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="sp s3" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg><svg class="sp s4" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>
 <h1 class="sr">DRACHWIN</h1>
 <div class="logocard"><img class="lg" alt=""></div>
-<p class="motto">Une plateforme. Plusieurs opportunités. Un seul espace.</p>
-<p class="tag">Apprends, développe tes compétences et accède à des opportunités, dans un seul espace.</p>
+<p class="motto">Le pouvoir de gagner</p>
+<p class="tag">Apprends, avance et gagne : pour les jeunes de 18 à 30 ans.</p>
 <div class="btns" id="choice">
 <button class="btn" id="b-in" type="button">S'inscrire</button>
 <button class="btn alt" id="b-log" type="button">Se connecter</button>
@@ -439,16 +418,8 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <label id="passrow">Mot de passe<input id="password" type="password" autocomplete="new-password" minlength="8" required></label>
 <label id="lr">Code de parrainage (facultatif)<input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off"></label>
 <button class="btn" id="go" type="submit"></button>
-<button class="link" id="forgot" type="button" hidden>Mot de passe oublié ?</button>
 <p id="err" role="alert"></p>
 <button class="link" id="back" type="button">Retour</button>
-</form>
-<form id="npf" hidden>
-<h2>Nouveau mot de passe</h2>
-<label>Nouveau mot de passe (8 caractères minimum)<input id="np1" type="password" minlength="8" autocomplete="new-password" required></label>
-<label>Confirmer le mot de passe<input id="np2" type="password" minlength="8" autocomplete="new-password" required></label>
-<button class="btn" id="npgo" type="submit">Enregistrer</button>
-<p id="npm" role="alert"></p>
 </form>
 <form name="inscription" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true"><input type="hidden" name="form-name" value="inscription"><input name="bot-field" tabindex="-1" autocomplete="off"><input name="nom"><input name="prenom"><input name="naissance"><input name="email"><input name="telephone"><input name="statut"><input name="etablissement"><input name="code_parrainage"><input name="code_membre"><input name="date"></form>
 <div id="reg2" hidden>
@@ -467,7 +438,7 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 </div>
 <h3 class="qh">Questions fréquentes</h3>
 <div class="faq">
-<details><summary>C'est quoi DRACHWIN ?</summary><p>Une initiative qui accompagne les personnes de 18 ans et plus : développement personnel, apprentissage, activités commerciales et autonomie.</p></details>
+<details><summary>C'est quoi DRACHWIN ?</summary><p>Une initiative qui accompagne les jeunes de 18 à 30 ans : développement personnel, apprentissage, activités commerciales et autonomie.</p></details>
 <details><summary>C'est gratuit ?</summary><p>Program Free est gratuit. Program Win demande une activation de 300 gourdes.</p></details>
 <details><summary>Comment ça marche ?</summary><ol><li>Inscris-toi.</li><li>Choisis ton programme.</li><li>Avance avec les tâches, les livres et les tableaux.</li></ol></details>
 </div>
@@ -504,7 +475,7 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <dl>
 <dt>Drachwin Business</dt><dd>Réseautage, parrainage et tableaux de revenus organisés par niveaux.</dd>
 <dt>Drachwin Bibliothèque</dt><dd>Des livres numériques en PDF à obtenir en échangeant tes Coins.</dd>
-<dt>MACHE</dt><dd>Un espace publicitaire pour publier le catalogue de ton commerce, découvrir ceux des autres membres et les contacter.</dd>
+<dt>Drachwin Sell</dt><dd>Un marché publicitaire : publie le catalogue de ton commerce, découvre ceux des autres membres et gagne aussi 2 % de commission sur les articles de partenaires.</dd>
 </dl>
 <button class="pick" data-p="win" type="button">Choisir Program Win</button>
 </article>
@@ -539,7 +510,7 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <p style="margin:0"><b>Ton compte est prêt ?</b> Entre le code d'activation reçu de l'équipe.</p>
 <div class="row"><input id="fcode" placeholder="Code d'activation" maxlength="8" autocapitalize="characters" autocomplete="off" aria-label="Code d'activation"><button class="mini" id="fgo" type="button">Activer</button></div>
 <p class="aw" id="fce" role="alert"></p>
-
+<button class="mini" id="fown" type="button" hidden>Valider cette demande (visible uniquement par toi)</button>
 <button class="link" id="fedit" type="button">Modifier ma demande</button>
 </div>
 <p class="acts"><button class="link" id="achg" type="button">Changer de programme</button> · <button class="link" id="aout" type="button">Se déconnecter</button></p>
@@ -549,12 +520,12 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 <button class="theme-toggle" type="button" data-theme-toggle>☾ Thème sombre</button>
 <h1 class="sr">DRACHWIN</h1>
 <div class="logocard"><img class="lg" alt=""></div>
-<p class="motto">Une plateforme. Plusieurs opportunités. Un seul espace.</p>
-<div class="facts"><span>Créée en 2025</span><span>18 ans et plus</span><span id="count">Program</span></div>
+<p class="motto">Le pouvoir de gagner</p>
+<div class="facts"><span>Créée en 2025</span><span>18 à 30 ans</span><span id="count">Program</span></div>
 </div></header>
 
 <nav class="app-bottom-nav" aria-label="Navigation principale"><div class="wrap">
-<a href="#apercu" data-nav="apercu" aria-label="Accueil"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Accueil</span></a>
+<a href="#apercu" data-nav="apercu" aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Home</span></a>
 <a href="#start" data-nav="start" data-switch="free" aria-label="Program Start"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span>Program Start</span></a>
 <a href="#wallet" data-nav="wallet" data-switch="win" aria-label="Portefeuille"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M3 10h18M16 15h2"/></svg><span>Portefeuille</span></a>
 <a href="#business" data-nav="business" data-switch="win" aria-label="Program Win"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4m-4 1v4m-4 3h8"/></svg><span>Program Win</span></a>
@@ -652,9 +623,10 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 </section>
 
 <section id="sell" data-prog="win">
-<h2><span class="ico sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>MACHE</h2>
+<h2><span class="ico sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>Drachwin Sell</h2>
 <p class="sub">Marché publicitaire</p>
-<div id="mache" aria-live="polite"></div>
+<div class="stabs" role="tablist" aria-label="Marché Drachwin Sell"><button type="button" class="stab on" id="tmache" role="tab" aria-selected="true">MACHE</button></div>
+<div id="mache"></div>
 <h3>Questions fréquentes</h3>
 <div class="faq">
 <details><summary>Qu’est-ce que le MACHE ?</summary><p>C’est le marché publicitaire de DRACHWIN. Les membres y publient le catalogue de leur commerce, et les autres les parcourent un par un puis contactent le commerçant sur WhatsApp.</p></details>
@@ -705,17 +677,22 @@ nav.app-bottom-nav a.on{background:var(--soft);color:var(--blue)}
 </main>
 
 <footer><div class="wrap">
-<p><b>DRACHWIN</b> · Une plateforme. Plusieurs opportunités. Un seul espace.</p>
+<p><b>DRACHWIN</b> · Le pouvoir de gagner</p>
 <p class="small">DRACHWIN ne garantit aucun revenu.</p>
 <p><span id="hello"></span> · <button class="link" id="chg" type="button">Changer de programme</button> · <button class="link" id="out" type="button">Se déconnecter</button></p>
 </div></footer>
 
 </div>
-<script>window.__REC=/type=recovery/.test(location.hash+location.search);</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
-/* Configuration normale : les contrôles de sécurité restent actifs. */
+/* Indicateurs de chargement pour les actions et formulaires. */
+function drachwinSetLoading(btn){if(!btn||!btn.isConnected||btn.disabled||btn.dataset.loading==='1')return;btn.dataset.loading='1';btn.dataset.wasDisabled=''+btn.disabled;btn.classList.add('is-loading');btn.setAttribute('aria-busy','true');btn.disabled=true;setTimeout(function(){if(!btn.isConnected)return;btn.disabled=btn.dataset.wasDisabled==='true';btn.classList.remove('is-loading');btn.removeAttribute('aria-busy');delete btn.dataset.loading;delete btn.dataset.wasDisabled},15000)}
+document.addEventListener('click',function(ev){var btn=ev.target&&ev.target.closest?ev.target.closest('button'):null;if(!btn||btn.disabled||btn.classList.contains('stab')||btn.id==='theme'||btn.id==='chg'||btn.id==='out'||btn.hasAttribute('data-no-loading'))return;setTimeout(function(){drachwinSetLoading(btn)},0)},true);
+document.addEventListener('submit',function(ev){var btn=ev.submitter;if(btn)setTimeout(function(){drachwinSetLoading(btn)},0)},true);
+
+/* Configuration hors mode TEST : contrôles d’âge (18+) et délais normaux conservés. */
+var TEST=false;
 var SUPABASE_URL="https://wbxiqyrnugtkyjdclhhs.supabase.co";
 var SUPABASE_PUBLISHABLE_KEY="sb_publishable_UhjdO6Ipt8kSzSz1HVph5w_znppoGne";
 var supabaseClient=null;
@@ -777,7 +754,6 @@ function stat(i){var b=SB[i];if(b){var t='';if(D.valid&&D.valid[i])t='Validée';
 function drawT(){var ul=document.getElementById('tl');ul.textContent='';TK.forEach(function(k,i){var bd=el('span','st'),pp=proofPanel(i),li=row(k[0]+' ('+k[1]+' Coins)',D.tasks[i],function(v){D.tasks[i]=v?1:0;sv();stat(i);pp.hidden=!v});SB[i]=bd;pp.hidden=!D.tasks[i];li.appendChild(bd);li.appendChild(pp);ul.appendChild(li);stat(i)})}
 function renew(){var now=Date.now(),ch=false;if(!D.cycleAt){D.cycleAt=now;ch=true}var l=D.cycleAt+RENEW-now;if(l<=0){TK.forEach(function(k,i){if(i===0||i===5)return;if(D.valid&&D.valid[i])D.bank=(D.bank||0)+k[1];D.tasks[i]=0;if(D.valid)D.valid[i]=0;pDel(i)});D.cycleAt=now;l=RENEW;ch=true}document.getElementById('cy').textContent='Renouvellement des tâches 2 à 5 et 7 dans '+fmt(l);if(ch){sv();drawT()}}
 document.getElementById('gf').onsubmit=function(e){e.preventDefault();var i=document.getElementById('gi'),v=i.value.trim();if(!v)return;D.goals.push({t:v,d:0});i.value='';sv();drawG()};
-var pvInput=document.getElementById('pv'),pcOutput=document.getElementById('pc');if(pvInput&&pcOutput){pvInput.oninput=function(){var v=parseFloat(this.value);pcOutput.textContent=(v>0?Math.round(v*2)/100:0)+' G'}}
 drawG();drawT();renew();setInterval(renew,1000);
 function drawM(){var ul=document.getElementById('cmt'),L=D.comments||[];ul.textContent='';if(!L.length){ul.appendChild(el('li','',"Aucun message pour l'instant. Sois le premier à donner ton avis."));return}for(var j=L.length-1;j>=0;j--)(function(j){var c=L[j],li=el('li'),h=el('div','h'),x=el('button','link','Supprimer');h.appendChild(el('b','',c.n));h.appendChild(el('span','t',c.y));h.appendChild(el('span','',new Date(c.t).toLocaleDateString('fr-FR',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'})));li.appendChild(h);li.appendChild(el('p','',c.x));x.type='button';x.onclick=function(){D.comments.splice(j,1);sv();drawM()};li.appendChild(x);ul.appendChild(li)})(j)}
 document.getElementById('cf').onsubmit=function(e){e.preventDefault();var t=document.getElementById('cx'),v=t.value.trim();if(!v)return;var a=get();D.comments=D.comments||[];D.comments.push({n:(a&&a.prenom)||'Membre',y:document.getElementById('cty').value,x:v,t:Date.now()});if(D.comments.length>50)D.comments.shift();t.value='';sv();drawM();document.getElementById('cm').textContent="Message publié. Pour l'instant, il reste visible sur ton appareil seulement."};
@@ -820,7 +796,7 @@ function who(){var ac=get()||{};return {n:ac.prenom||'Membre',c:me}}
 var ctl=myCt(lv);if(ctl){c.appendChild(el('p','','Tu contribues déjà au tableau '+ctl.c+' de ce niveau.'))}else if(av.length){c.appendChild(el('p','','Tableaux disponibles ('+av.length+') :'));av.forEach(function(t){var d=el('div','pf2'),b=el('button','mini','Contribuer '+nf(a)+' G');d.appendChild(el('b','',t.c));d.appendChild(el('span','',t.m.length+' / 10 contributeurs'));b.type='button';b.onclick=function(){pay(function(){t.m.push(who());B.dep.push({c:t.c,l:lv,a:a,t:Date.now()})})};d.appendChild(b);c.appendChild(d)})}
 else if(myTb(lv)){c.appendChild(el('p','',"Aucun tableau n'est disponible au niveau "+lv+". Tu as déjà ton propre tableau à ce niveau."))}else{c.appendChild(el('p','',"Aucun tableau n'est disponible au niveau "+lv+". Ta contribution en créera un nouveau."));var nb=el('button','btn','Créer un tableau avec ma contribution ('+nf(a)+' G)');nb.type='button';nb.onclick=function(){pay(function(){var t=newTb(lv,me,[who()]);B.dep.push({c:t.c,l:lv,a:a,t:Date.now()})})};c.appendChild(nb)}
 c.appendChild(msg);
-
+if(OWN){var sm=el('button','link',"Simuler le tableau d'un autre membre (test propriétaire)");sm.type='button';sm.onclick=function(){var m=[];for(var i=0;i<3;i++)m.push({n:'Membre test',c:'DW-T'+i});newTb(lv,'DW-DEMO'+Math.floor(Math.random()*9999),m);drawC2()};c.appendChild(sm)}
 if((B.dep||[]).length){var ul=el('ul','chk');B.dep.slice().reverse().forEach(function(d){var li=el('li');li.appendChild(el('span','','Niveau '+d.l+' · '+d.c+' · '+nf(d.a)+' G'));ul.appendChild(li)});c.appendChild(el('p','','Mes dépôts :'));c.appendChild(ul)}
 box.appendChild(c)}
 var wmode=null,NATC='40023057',MONC='48680701',WA='https://wa.me/message/N2O4JMOAIEIOG1',FTX='';
@@ -859,18 +835,16 @@ if(/not_authenticated/.test(m))return 'Reconnecte-toi pour effectuer un transfer
 return 'Transfert impossible pour le moment. Réessaie dans un instant.'}
 function trMask(e){var p=String(e).split('@');return p.length<2?String(e):p[0].charAt(0)+'***@'+p[1]}
 function trSend(mail,code,amt){
-if(!supabaseClient)return Promise.reject('Connexion Supabase indisponible. Reconnecte-toi puis réessaie.');
-return supabaseClient.rpc('transfer_wallet',{p_email:mail,p_code:code,p_amount:amt}).then(function(r){
-if(r.error){var m=trErr(r.error);if(m==='MISSING')return Promise.reject('Le transfert automatique n’est pas encore activé.');return Promise.reject(m)}
-var nb=Number(r.data);return {bal:Number.isFinite(nb)?nb:null}},function(){return Promise.reject('Transfert impossible pour le moment. Réessaie dans un instant.')})}
+return Promise.reject('Les transferts d’argent sont désactivés dans cette version de prévisualisation.');
+}
 function trConfirm(c,W,mail,code,amt){c.textContent='';c.appendChild(el('h3','','Confirmer le transfert'));
 c.appendChild(el('p','','Tu envoies '+nf(amt)+' G à '+mail+' (code '+code+').'));c.appendChild(el('p','','Le paiement est automatique et immédiat. Il ne peut pas être annulé.'));
 var er=el('p','aw'),ok=el('button','btn','Confirmer et envoyer'),no=el('button','btn alt','Modifier'),r=el('div','row');ok.type='button';no.type='button';
 no.onclick=function(){if(trBusy)return;drawWA()};
 ok.onclick=function(){if(trBusy)return;trBusy=true;ok.disabled=true;no.disabled=true;er.textContent='Envoi en cours…';
-trSend(mail,code,amt).then(function(res){trBusy=false;var ref=Date.now().toString(36).slice(-5).toUpperCase();W.trs=W.trs||[];W.trs.push({r:ref,a:amt,e:mail,c:code,t:Date.now()});if(W.trs.length>30)W.trs.shift();sv();
-trMsg='✓ '+nf(amt)+' G envoyés à '+mail+'. Réf. '+ref+'.';if(res.bal!==null)secureWalletBalance=res.bal;drawW();
-try{supabaseClient.auth.getSession().then(function(x){var u=x&&x.data&&x.data.session&&x.data.session.user;return u?loadSecureMember(u):null}).then(function(){drawW();drawWA()}).catch(function(){})}catch(e){}
+trSend(mail,code,amt).then(function(res){trBusy=false;var ref=Date.now().toString(36).slice(-5).toUpperCase();W.trs=W.trs||[];W.trs.push({r:ref,a:amt,e:mail,c:code,t:Date.now(),sim:!!res.sim});if(W.trs.length>30)W.trs.shift();sv();
+if(res.sim){trMsg='Simulation (mode test) : aucun argent n’a été envoyé. Réf. '+ref+'.'}else{trMsg='✓ '+nf(amt)+' G envoyés à '+mail+'. Réf. '+ref+'.';if(res.bal!==null)secureWalletBalance=res.bal;drawW();
+try{supabaseClient.auth.getSession().then(function(x){var u=x&&x.data&&x.data.session&&x.data.session.user;return u?loadSecureMember(u):null}).then(function(){drawW();drawWA()}).catch(function(){})}catch(e){}}
 wmode='tr';drawWA()},function(m){trBusy=false;ok.disabled=false;no.disabled=false;er.textContent=String(m)})};
 r.appendChild(ok);r.appendChild(no);c.appendChild(er);c.appendChild(r)}
 function trForm(W){var c=el('div','quiz'),f=el('form','dep'),em=document.createElement('input'),cd=document.createElement('input'),am=document.createElement('input'),er=el('p','aw'),ok=el('button','btn','Continuer'),a=get()||{};
@@ -887,7 +861,7 @@ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){er.textContent='Entre l’e-mail du
 if(!code){er.textContent='Entre le code de parrainage du destinataire.';return}
 if(!(amt>=TRMIN&&amt<=TRMAX)){er.textContent='Le montant doit être entre 50 et 30 000 gourdes.';return}
 if(mail===String(a.email||'').toLowerCase()||code===mycode()){er.textContent='Tu ne peux pas t’envoyer de l’argent à toi-même.';return}
-if(secureWalletBalance===null){er.textContent='Solde sécurisé indisponible. Reconnecte-toi puis réessaie.';return}
+if(secureWalletBalance===null&&!TEST){er.textContent='Solde sécurisé indisponible. Reconnecte-toi puis réessaie.';return}
 if(secureWalletBalance!==null&&amt>secureWalletBalance){er.textContent='Solde insuffisant : il te manque '+nf(amt-secureWalletBalance)+' G.';return}
 trConfirm(c,W,mail,code,amt)};
 c.appendChild(f);return c}
@@ -901,7 +875,7 @@ ul.appendChild(li)});box.appendChild(ul)}
 if(W.wds.length){box.appendChild(el('h3','','Mes retraits'));var u2=el('ul','chk');W.wds.slice().reverse().forEach(function(w){var li=el('li'),late=w.st!=='paye'&&Date.now()-w.t>3*36e5;li.appendChild(el('span','','Réf. '+w.r+' · '+nf(w.a)+' G · '+w.m+' '+w.n));li.appendChild(el('span','st',w.st==='paye'?'Payé':late?'Délai de 3 h dépassé':'En attente · moins de 3 h'));
 if(w.st!=='paye'){var sb=el('div','sb'),pb=el('button','mini',"J'ai reçu l'argent");sendBtns(sb,'Fiche de retrait '+w.r,['Bonjour DRACHWIN, voici ma fiche de retrait.',wwho(),'Montant : '+nf(w.a)+' G','Moyen : '+w.m,'Numéro : '+w.n,'Nom sur le compte : '+w.nm,'Référence : '+w.r]);pb.type='button';pb.onclick=function(){w.st='paye';w.pt=Date.now();sv();drawB()};sb.appendChild(pb);li.appendChild(sb);if(late)li.appendChild(el('p','pm','Écris à drachwin2@gmail.com en donnant la référence '+w.r+'.'))}
 u2.appendChild(li)});box.appendChild(u2)}
-if(W.trs&&W.trs.length){box.appendChild(el('h3','','Mes transferts'));var u3=el('ul','chk');W.trs.slice().reverse().forEach(function(x){var li=el('li');li.appendChild(el('span','','Réf. '+x.r+' · '+nf(x.a)+' G · vers '+trMask(x.e)));li.appendChild(el('span','st','Envoyé'));u3.appendChild(li)});box.appendChild(u3)}}
+if(W.trs&&W.trs.length){box.appendChild(el('h3','','Mes transferts'));var u3=el('ul','chk');W.trs.slice().reverse().forEach(function(x){var li=el('li');li.appendChild(el('span','','Réf. '+x.r+' · '+nf(x.a)+' G · vers '+trMask(x.e)));li.appendChild(el('span','st',x.sim?'Simulation (test)':'Envoyé'));u3.appendChild(li)});box.appendChild(u3)}}
 function tbMembers(t){return t?t.m.map(function(x){return x.n}):[]}
 function myCt(l){var me=mycode();return TBS().filter(function(t){return t.l===l&&t.o!==me&&t.m.some(function(x){return x.c===me})})[0]||null}
 function bar(n){var b=el('div','bar'),i=document.createElement('i');i.style.width=(n*10)+'%';b.appendChild(i);return b}
@@ -913,12 +887,12 @@ A.appendChild(el('h3','','Mon tableau · je suis maître'));A.appendChild(el('p'
 if(vl>1){if(tb)A.appendChild(el('p','','Code de ton tableau : '+tb.c));else A.appendChild(el('p','',"Ton tableau s'ouvrira automatiquement, sans nouveau versement, quand le tableau où tu contribues sera complet."))}
 A.appendChild(el('p','','Contributions reçues : '+nf(Math.min(10,L.length)*lv[1])+' G sur '+nf(lv[2])+' G.'));A.appendChild(el('p','','Tu touches 50 % à la clôture : '+nf(lv[2]/2)+' G.'));if(vl===1&&L.length>10)A.appendChild(el('p','',"Filleuls au-delà du 10e : "+(L.length-10)+". Tu reçois 150 G pour chacun ; les 150 G restants vont directement dans la caisse d'aide."));A.appendChild(mlist(L));
 if(!full){A.appendChild(el('p','',vl>1?'Ce tableau se remplit avec des membres qui acceptent de déposer '+nf(lv[1])+' G chacun, y compris directement depuis leur portefeuille.':"Les filleuls apparaissent ici automatiquement quand ils s'inscrivent avec ton code et que leur activation est validée."));
-}
-else{A.appendChild(el('p','','Tableau complet : niveau '+vl+' terminé.'));if(vl===cur&&cur<5){var nx=el('button','mini','Débloquer le niveau '+(cur+1)+' (facultatif)');nx.type='button';nx.onclick=function(){B.cur=cur+1;B.view=cur+1;sv();drawB()};A.appendChild(nx)}else if(vl===5)A.appendChild(el('p','','Tous les niveaux sont terminés.'))}
+if(OWN){var sm=el('button','mini',vl>1?'Simuler un contributeur (test propriétaire)':'Simuler un filleul (test propriétaire)');sm.type='button';sm.onclick=function(){if(vl>1){var t=tb||newTb(vl,me,[]);t.m.push({n:'Contributeur test '+(t.m.length+1),c:'DW-S'+t.m.length})}else L.push('Filleul test '+(L.length+1));sv();drawB()};A.appendChild(sm)}}
+else{A.appendChild(el('p','','Tableau complet : niveau '+vl+' terminé.'));if(vl===1&&OWN){var s2=el('button','mini','Simuler un filleul supplémentaire (test propriétaire)');s2.type='button';s2.onclick=function(){L.push('Filleul test '+(L.length+1));sv();drawB()};A.appendChild(s2)}if(vl===cur&&cur<5){var nx=el('button','mini','Débloquer le niveau '+(cur+1)+' (facultatif)');nx.type='button';nx.onclick=function(){B.cur=cur+1;B.view=cur+1;sv();drawB()};A.appendChild(nx)}else if(vl===5)A.appendChild(el('p','','Tous les niveaux sont terminés.'))}
 box.appendChild(A);
 C.appendChild(el('h3','','Tableau où je contribue'));
 if(vl===1){var ac=get()||{};C.appendChild(el('p','',ac.ref?'Tu es dans le tableau de ton parrain ('+ac.ref+'). Ta contribution : '+nf(lv[1])+' G.':"Tu n'as pas de parrain : tu ne contribues à aucun tableau de niveau 1."))}
-else{var ct=myCt(vl);if(ct){C.appendChild(el('p','','Niveau '+vl+' · code '+ct.c));C.appendChild(el('p','coachn',ct.m.length+' / 10 contributeurs'));C.appendChild(bar(ct.m.length));C.appendChild(el('p','','Maître du tableau : '+ct.o));C.appendChild(el('p','','Ta contribution : '+nf(lv[1])+' G.'));C.appendChild(mlist(tbMembers(ct)));}else C.appendChild(el('p','',"Tu ne contribues à aucun tableau de ce niveau. Utilise « Contribuer à un tableau » plus bas."))}
+else{var ct=myCt(vl);if(ct){C.appendChild(el('p','','Niveau '+vl+' · code '+ct.c));C.appendChild(el('p','coachn',ct.m.length+' / 10 contributeurs'));C.appendChild(bar(ct.m.length));C.appendChild(el('p','','Maître du tableau : '+ct.o));C.appendChild(el('p','','Ta contribution : '+nf(lv[1])+' G.'));C.appendChild(mlist(tbMembers(ct)));if(OWN&&ct.m.length<10){var fb=el('button','mini','Simuler la fin de ce tableau (test propriétaire)');fb.type='button';fb.onclick=function(){while(ct.m.length<10)ct.m.push({n:'Membre test',c:'DW-F'+ct.m.length});sv();drawB()};C.appendChild(fb)}}else C.appendChild(el('p','',"Tu ne contribues à aucun tableau de ce niveau. Utilise « Contribuer à un tableau » plus bas."))}
 box.appendChild(C);
 var ov=el('ul','five');LV.forEach(function(v){var li=el('li');li.appendChild(el('b','','Niveau '+v[0]));li.appendChild(document.createTextNode(' · '+nf(v[1])+' G par personne · tableau de '+nf(v[2])+' G '));li.appendChild(el('span','st',(B.done[v[0]]||v[0]<cur)?'Terminé':v[0]===cur?'En cours':'Verrouillé'));ov.appendChild(li)});box.appendChild(ov);
 box.appendChild(el('p','note',"Ce suivi est personnel et indicatif. Seules les contributions vérifiées par l'équipe DRACHWIN comptent, et aucun gain n'est garanti."));drawW();drawWA();drawC2();if(FONDS){drawF(document.getElementById('fc'));drawF(document.getElementById('pf'))}}
@@ -950,7 +924,7 @@ function coachLink(p,c){var a=get()||{},nm=((a.prenom||'')+' '+(a.nom||'')).trim
 function pcard(p,c){var d=el('div','pf'),t=el('div','pt'),a=document.createElement('a');d.appendChild(el('div','av',p.n.split(' ').map(function(x){return x.charAt(0)}).join('')));t.appendChild(el('b','',p.n));t.appendChild(el('p','',p.b));a.className='call';a.href=coachLink(p,c);a.target='_blank';a.rel='noopener';a.textContent='Contacter le coach';t.appendChild(a);d.appendChild(t);return d}
 var qz=document.getElementById('qz'),qi=0,sc=[0,0,0,0];
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e}
-var tm=null,WAIT=14*864e5;
+var tm=null,WAIT=TEST?0:14*864e5;
 function left(){return (D.coachAt||0)+WAIT-Date.now()}
 function fmt(ms){var s=Math.max(0,Math.floor(ms/1000)),d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60);return d+' j '+h+' h '+m+' min '+(s%60)+' s'}
 function cdEl(){clearInterval(tm);var p=el('p','cdn');function u(){var l=left();if(l<=0){clearInterval(tm);if(qz.contains(p))qIntro();return}p.textContent='Prochain test possible dans '+fmt(l)}u();tm=setInterval(u,1000);return p}
@@ -960,7 +934,7 @@ function qAsk(){qz.textContent='';var q=QS[qi],bar=el('div','bar'),i=document.cr
 function qRes(c){clearInterval(tm);qz.textContent='';var o=CO[c],ul=el('ul');qz.appendChild(el('p','','Ton coach recommandé'));qz.appendChild(el('h3','coachn',o.n));qz.appendChild(el('p','',o.w));qz.appendChild(el('p','','Tes premiers pas :'));o.s.forEach(function(t){ul.appendChild(el('li','',t))});qz.appendChild(ul);qz.appendChild(el('h3','','Tes coachs'));PR[c].forEach(function(p){qz.appendChild(pcard(p,c))});if(left()>0)qz.appendChild(cdEl())}
 qIntro();
 var cl=document.getElementById('cl');
-function drawC(){cl.textContent='';var L=!D.testing&&D.coach!=null&&CO[D.coach]?D.coach:-1;CO.forEach(function(o,i){if(i!==L){cl.appendChild(el('div','lock','🔒 '+o.n+' : '+(L<0?'se déverrouille avec le résultat du test.':'réservé aux membres dont le test indique ce coach.')));return}var d=document.createElement('details'),sm=document.createElement('summary');sm.textContent=(i===L?'Ton coach – ':'')+o.n+' : '+o.f;d.appendChild(sm);PR[i].forEach(function(p){d.appendChild(pcard(p,i))});if(i===L)d.open=true;cl.appendChild(d)})}
+function drawC(){cl.textContent='';var L=!D.testing&&D.coach!=null&&CO[D.coach]?D.coach:-1;CO.forEach(function(o,i){if(i!==L&&!TEST){cl.appendChild(el('div','lock','🔒 '+o.n+' : '+(L<0?'se déverrouille avec le résultat du test.':'réservé aux membres dont le test indique ce coach.')));return}var d=document.createElement('details'),sm=document.createElement('summary');sm.textContent=(i===L?'Ton coach – ':'')+o.n+' : '+o.f;d.appendChild(sm);PR[i].forEach(function(p){d.appendChild(pcard(p,i))});if(i===L)d.open=true;cl.appendChild(d)})}
 drawC();
 var te=null,ev=document.getElementById('ev'),EQ=["J’ai avancé vers mes objectifs.","J’ai plus confiance en moi.","Je tiens mieux mes habitudes.","Je me connais mieux."],EA=["Pas du tout","Un peu","Assez","Beaucoup"];
 function evCd(t){var c=el('p','cdn');function u(){var y=left();if(y<=0){clearInterval(te);drawE();return}c.textContent=t+fmt(y)}u();te=setInterval(u,1000);return c}
@@ -976,7 +950,7 @@ drawE();
 var curP=null;
 function route(){if(!curP)return;var id=location.hash.slice(1),secs=document.querySelectorAll('section[data-prog]'),part=false;for(var i=0;i<secs.length;i++){var on=secs[i].id===id&&(secs[i].getAttribute('data-prog')===curP||secs[i].getAttribute('data-prog')==='all');secs[i].classList.toggle('on',on);if(on)part=true}site.className=part?'part':'';if(part&&id==='profil')drawP();var na=document.querySelectorAll('nav.app-bottom-nav a[data-nav]'),cu=part?id:'apercu';for(var j=0;j<na.length;j++)na[j].classList.toggle('on',na[j].getAttribute('data-nav')===cu);var t=document.getElementById(id);if(!part&&id==='finaliser'&&t)t.scrollIntoView();else window.scrollTo(0,0)}
 window.addEventListener('hashchange',route);
-var OWN=false,ACT_ON=true,actEl=document.getElementById('act'),af=document.getElementById('af'),ap2=document.getElementById('ap2'),fxFile=null,fvUrl=null;
+var OWN=false,ACT_ON=!TEST,actEl=document.getElementById('act'),af=document.getElementById('af'),ap2=document.getElementById('ap2'),fxFile=null,fvUrl=null;
 function age(v){var b=new Date(v);if(isNaN(b))return -1;var n=new Date(),a=n.getFullYear()-b.getFullYear(),m=n.getMonth()-b.getMonth();if(m<0||(m===0&&n.getDate()<b.getDate()))a--;return a}
 function fshow(box,f){box.textContent='';if(!f)return;var i=document.createElement('img');i.src=URL.createObjectURL(f);i.alt='Photo de la transaction';box.appendChild(i)}
 function drawA(){var a=D.act;if(a&&a.st==='attente'){af.hidden=true;ap2.hidden=false;document.getElementById('fsum').textContent=a.prenom+' '+a.nom+' · '+a.tel;var ac=get()||{},dn=(a.dob||'').split('-').reverse().join('/'),tx="Bonjour DRACHWIN, je demande l'activation de mon compte Program Win.\nNom : "+a.nom+"\nPrénom : "+a.prenom+"\nDate de naissance : "+dn+"\nTéléphone : "+a.tel+"\nE-mail : "+(ac.email||'')+(ac.st?"\nStatut : "+ac.st+(ac.et?" ("+ac.et+")":""):"")+"\nCode de parrainage : "+(ac.ref||'aucun')+(a.rn?"\nResponsable : "+a.rn+" ("+a.rt+")":"")+"\nJe joins la photo de ma transaction (NatCash ou MonCash) de 300 gourdes.";FTX=tx;pGet('act',function(f){fshow(document.getElementById('fpv'),f)})}else{af.hidden=false;ap2.hidden=true;var mm=get()||{};[['fn','nom'],['fp','prenom'],['fd','dob'],['ftel','tel']].forEach(function(x){var e=document.getElementById(x[0]);if(!e.value)e.value=mm[x[1]]||''});var fdE=document.getElementById('fd');if(fdE.onchange)fdE.onchange.call(fdE)}}
@@ -995,10 +969,11 @@ document.getElementById('agen').onclick=function(){var e=document.getElementById
 document.getElementById('aquit').onclick=function(){location.hash='';location.reload()};
 function chkAdm(){if(location.hash==='#gestion-dw7k2q'){[gate,choose,actEl,site,document.getElementById('pub')].forEach(function(x){x.hidden=true});document.getElementById('adm').hidden=false}}
 window.addEventListener('hashchange',chkAdm);
-
-try{if(window.claude&&claude.use)claude.use('user').then(function(u){if(u&&u.isOwner&&u.isOwner()){OWN=true;drawB();drawL();mcDraw()}}).catch(function(){})}catch(e){}
+document.getElementById('fown').onclick=function(){if(D.act){D.act.st='valide';sv()}apply('win')};
+try{if(window.claude&&claude.use)claude.use('user').then(function(u){if(u&&u.isOwner&&u.isOwner()){OWN=true;document.getElementById('fown').hidden=false;drawB();drawL();drawS();mcDraw()}}).catch(function(){})}catch(e){}
+function simF(){var B=D.biz||{},r={aide:0,reserve:0,mv:[]};function add(l){var t=LV[l-1][2];r.aide+=t*.3;r.reserve+=t*.2;r.mv.push('Niveau '+l+' · tableau complet · +'+nf(t*.3)+' G aide sociale · +'+nf(t*.2)+' G réserve (simulation)')}if(((B.t&&B.t[1])||[]).length>=10)add(1);TBS().forEach(function(t){if(t.m.length>=10)add(t.l)});var ex=Math.max(0,((B.t&&B.t[1])||[]).length-10);if(ex){r.aide+=ex*150;r.mv.push(ex+' filleul(s) supplémentaire(s) · +'+nf(ex*150)+" G caisse d'aide (simulation)")}return r}
 var FONDS={aide:0,reserve:0,maj:'14 octobre 2026',mv:[]};
-function drawF(box){var MV=FONDS.mv.slice();box.textContent='';[["Fonds commun d'aide sociale",'aide','30 % de chaque tableau complété'],['Réserve commune de fonctionnement','reserve','20 % de chaque tableau complété']].forEach(function(x){var c=el('div','coins');c.appendChild(el('small','',x[0]));c.appendChild(el('b','amt',nf(FONDS[x[1]])+' G'));c.appendChild(el('p','',x[2]));box.appendChild(c)});
+function drawF(box){var SIM=simF(),MV=FONDS.mv.concat(OWN?SIM.mv:[]);box.textContent='';[["Fonds commun d'aide sociale",'aide','30 % de chaque tableau complété'],['Réserve commune de fonctionnement','reserve','20 % de chaque tableau complété']].forEach(function(x){var c=el('div','coins');c.appendChild(el('small','',x[0]));c.appendChild(el('b','amt',nf(FONDS[x[1]]+(OWN?SIM[x[1]]:0))+' G'));c.appendChild(el('p','',x[2]));if(OWN&&SIM[x[1]]>0)c.appendChild(el('p','pm','dont '+nf(SIM[x[1]])+' G simulés (visible uniquement par toi)'));box.appendChild(c)});
 box.appendChild(el('p','note','Ces deux fonds sont collectifs et suivis séparément en comptabilité, sous la supervision du responsable financier. Dernière mise à jour : '+FONDS.maj+'.'));
 box.appendChild(el('h3','','Derniers mouvements'));if(MV.length){var ul=el('ul','chk');MV.forEach(function(m){var li=el('li');li.appendChild(el('span','',m));ul.appendChild(li)});box.appendChild(ul)}else box.appendChild(el('p','',"Aucun mouvement enregistré pour l'instant."))}
 drawF(document.getElementById('fc'));drawF(document.getElementById('pf'));
@@ -1024,7 +999,7 @@ async function loadLibrary(){
 function drawL(){
  var box=document.getElementById('lbw'),L=D.lib=D.lib||{spent:0,bonus:0,orders:[]},f=L.f==null?-1:L.f,bal=coinsTot(),c=el('div','coins'),ch=el('div','row');box.textContent='';
  c.appendChild(el('small','','Mon solde'));c.appendChild(el('b','amt',bal+(bal>1?' Coins':' Coin')));c.appendChild(el('p','','Les Coins sont affichés depuis ton compte. Une demande de livre sera enregistrée dans ton compte DRACHWIN.'));
- box.appendChild(c);
+ if(OWN){var ad=el('button','link','Ajouter 20 Coins (test propriétaire)');ad.type='button';ad.onclick=function(){L.bonus=(L.bonus||0)+20;sv();drawL()};c.appendChild(ad)}box.appendChild(c);
  [['Tous',-1]].concat(CAT.map(function(x,i){return [x[0],i]})).forEach(function(x){var b=el('button','chip'+(x[1]===f?' on':''),x[0]);b.type='button';b.onclick=function(){L.f=x[1];sv();drawL()};ch.appendChild(b)});box.appendChild(ch);
  if(!BOOKS.length){box.appendChild(el('p','note','Aucun livre publié pour le moment. Reviens bientôt.'))}
  BOOKS.filter(function(b){var ci=CAT.findIndex(function(x){return x[0].toLowerCase()===String(b.category||'').toLowerCase()});return f<0||ci===f}).forEach(function(b){
@@ -1039,6 +1014,23 @@ function drawL(){
 
 
 loadLibrary();
+var ART=[{n:"Boîte de savon artisanal",p:500},{n:"Lampe solaire",p:1000},{n:"Sac à dos étanche",p:2500},{n:"Casque audio sans fil",p:5000},{n:"Montre connectée",p:10000}];
+function cm(p,q){return Math.round(p*q*2)/100}
+function sellPaid(){var S=(D.sell&&D.sell.sales)||[],s=0;S.forEach(function(x){if(x.st==='versee')s+=cm(x.p,x.q)});return s}
+function drawS(){var S=D.sell=D.sell||{sales:[]},box=document.getElementById('sl'),pend=0,paid=0,c=el('div','coins'),f=el('form','dep'),sel=document.createElement('select'),q=document.createElement('input'),cl=document.createElement('input'),tot=el('p','pm'),ok=el('button','btn','Enregistrer la vente');box.textContent='';
+S.sales.forEach(function(x){if(x.st==='versee')paid+=cm(x.p,x.q);else pend+=cm(x.p,x.q)});
+c.appendChild(el('small','','Mes commissions de vente'));c.appendChild(el('b','amt',nf(paid)+' G'));c.appendChild(el('p','','versées par les partenaires · '+nf(pend)+' G en attente · '+S.sales.length+(S.sales.length>1?' ventes':' vente')));box.appendChild(c);
+box.appendChild(el('h3','','Articles des partenaires'));ART.forEach(function(a){var d=el('div','bk');d.appendChild(el('b','',a.n));d.appendChild(el('p','',nf(a.p)+' G · ta commission de 2 % : '+nf(cm(a.p,1))+' G'));box.appendChild(d)});
+box.appendChild(el('h3','','Déclarer une vente'));
+ART.forEach(function(a,i){var o=document.createElement('option');o.value=i;o.textContent=a.n+' · '+nf(a.p)+' G';sel.appendChild(o)});
+sel.setAttribute('aria-label','Article');q.type='number';q.min=1;q.max=99;q.value=1;q.setAttribute('inputmode','numeric');q.setAttribute('aria-label','Quantité');cl.placeholder='Nom du client';cl.maxLength=60;cl.setAttribute('aria-label','Nom du client');
+function n(){return Math.max(1,Math.min(99,parseInt(q.value)||1))}
+function up(){var a=ART[+sel.value];tot.textContent='Total : '+nf(a.p*n())+' G · ta commission (2 %) : '+nf(cm(a.p,n()))+' G'}
+sel.onchange=up;q.oninput=up;up();ok.type='submit';f.appendChild(sel);f.appendChild(q);f.appendChild(cl);f.appendChild(tot);f.appendChild(ok);
+f.onsubmit=function(e){e.preventDefault();var a=ART[+sel.value],nm=cl.value.trim();if(!nm)return;S.sales.push({a:a.n,p:a.p,q:n(),cl:nm,at:Date.now(),st:'attente'});sv();drawS();drawB()};box.appendChild(f);
+if(S.sales.length){box.appendChild(el('h3','','Mes ventes'));var ul=el('ul','chk');S.sales.slice().reverse().forEach(function(x){var li=el('li');li.appendChild(el('span','',x.a+' × '+x.q+' · client : '+x.cl+' · commission '+nf(cm(x.p,x.q))+' G'));li.appendChild(el('span','st',x.st==='versee'?'Commission versée':'En attente du partenaire'));if(OWN&&x.st!=='versee'){var b=el('button','link','Marquer versée (test)');b.type='button';b.onclick=function(){x.st='versee';sv();drawS();drawB()};li.appendChild(b)}ul.appendChild(li)});box.appendChild(ul);box.appendChild(el('p','note',"Le partenaire verse la commission après le paiement du client. Pour l'instant, tes ventes restent sur ton appareil : le partenaire ne les reçoit pas sans serveur."))}}
+drawS();
+
 /* ===== MACHE : marché publicitaire (données locales en attendant le serveur) ===== */
 var MCK='drachwin_mache',MCT=['Business','Activité culturelle','Activité sociale'],MCW=3*36e5,mcI=0,mcOpen=null,mcView='browse',mcMsg='',mcX=0,
 MCR=[['Image nette','L’image du catalogue est nette, lisible et non coupée (600 px minimum sur le grand côté).'],
@@ -1064,7 +1056,7 @@ box.appendChild(el('p','','Le MACHE réunit les catalogues publicitaires des mem
 var nav=el('div','row');[['browse','Parcourir ('+vis.length+')'],['create','Créer mon catalogue'],['mine','Mes catalogues ('+mine.length+')']].forEach(function(x){var b=el('button','chip'+(mcView===x[0]?' on':''),x[1]);b.type='button';b.onclick=function(){mcView=x[0];mcOpen=null;mcMsg='';mcDraw()};nav.appendChild(b)});box.appendChild(nav);
 if(mcMsg)box.appendChild(el('p','note',mcMsg));
 if(mcView==='create')mcCreate(box);else if(mcView==='mine')mcMine(box,all,mine);else mcBrowse(box,vis);
-box.appendChild(el('p','pm','Aperçu : les catalogues sont enregistrés sur cet appareil uniquement. La publication partagée nécessite encore un serveur sécurisé.'))}
+box.appendChild(el('p','pm','Pour l’instant, le MACHE affiche seulement les catalogues enregistrés sur cet appareil.'))}
 function mcBrowse(box,vis){if(!vis.length){box.appendChild(el('div','lock','Aucun catalogue publié pour l’instant. Sois le premier : crée le tien.'));return}
 if(mcOpen){var o=vis.filter(function(x){return x.id===mcOpen})[0];if(o){mcDetail(box,o);return}mcOpen=null}
 if(mcI>=vis.length)mcI=0;if(mcI<0)mcI=vis.length-1;
@@ -1085,7 +1077,7 @@ wa.type='tel';wa.setAttribute('inputmode','numeric');wa.placeholder='37 12 34 56
 f.appendChild(fld('Nom du commerçant',nm));f.appendChild(fld('Nom du commerce',co));f.appendChild(fld('Type de catalogue',ty));f.appendChild(fld('Numéro WhatsApp du commerçant (8 chiffres)',wa));
 f.appendChild(el('p','pm','Ce numéro sera visible des membres qui ouvrent ton catalogue.'));f.appendChild(fld('Image du catalogue',fi));f.appendChild(pv);
 fi.onchange=function(){var fl=fi.files&&fi.files[0];img=null;pv.textContent='';er.textContent='';if(!fl)return;if(fl.type.indexOf('image/')!==0){er.textContent='Choisis une image (photo ou capture).';return}if(fl.size>15*1048576){er.textContent='Image trop lourde (15 Mo maximum).';return}
-busy(ok,true);mcImg(fl,function(d,big){busy(ok,false);if(!d){er.textContent='Impossible de lire cette image.';return}if(big<600){er.textContent='Image trop petite : 600 px minimum sur le grand côté.';return}img=d;var p=document.createElement('img');p.className='mbig';p.src=d;p.alt='Aperçu du catalogue';pv.appendChild(p)})};
+mcImg(fl,function(d,big){if(!d){er.textContent='Impossible de lire cette image.';return}if(big<600){er.textContent='Image trop petite : 600 px minimum sur le grand côté.';return}img=d;var p=document.createElement('img');p.className='mbig';p.src=d;p.alt='Aperçu du catalogue';pv.appendChild(p)})};
 var dt=document.createElement('details'),sm=document.createElement('summary');sm.textContent='Critères de validation';dt.appendChild(sm);mcCrit(dt);f.appendChild(dt);
 var cl=el('label','mck');cl.appendChild(ck);cl.appendChild(el('span','','Je confirme que mon catalogue respecte les critères de validation.'));f.appendChild(cl);f.appendChild(er);ok.type='submit';f.appendChild(ok);
 f.onsubmit=function(e){e.preventDefault();er.textContent='';var m=nm.value.trim(),n=co.value.trim();
@@ -1094,19 +1086,20 @@ if(!wnum(wa.value)){er.textContent='Entre un numéro WhatsApp haïtien valide (8
 if(!img){er.textContent='Ajoute l’image de ton catalogue.';return}
 if(!ck.checked){er.textContent='Confirme que ton catalogue respecte les critères.';return}
 var L=mcAll();L.push({id:'C'+Date.now().toString(36)+Math.floor(Math.random()*46656).toString(36),oe:mcMe(),m:m,n:n,t:ty.value,w:wa.value.replace(/\D/g,'').slice(-8),img:img,st:'examen',at:Date.now()});
-busy(ok,true);if(!mcSave(L)){busy(ok,false);er.textContent='Espace plein sur cet appareil : choisis une image plus légère ou supprime un ancien catalogue.';return}
-mcView='mine';mcMsg='Catalogue envoyé. Il est en examen. S’il est validé, il apparaîtra dans le MACHE 3 heures après la validation.';mcDraw();busy(ok,false)};
+if(!mcSave(L)){er.textContent='Espace plein sur cet appareil : choisis une image plus légère ou supprime un ancien catalogue.';return}
+mcView='mine';mcMsg='Catalogue envoyé. Il est en examen. S’il est validé, il apparaîtra dans le MACHE 3 heures après la validation.';mcDraw()};
 box.appendChild(f)}
-function mcMine(box,all,mine){if(OWN){var q=all.filter(function(c){return c.st==='examen'});box.appendChild(el('h3','','À examiner (propriétaire)'));if(!q.length)box.appendChild(el('p','','Aucun catalogue en attente.'));q.forEach(function(c){box.appendChild(mcRow(c,true))})}
+function mcMine(box,all,mine){if(OWN){var q=all.filter(function(c){return c.st==='examen'});box.appendChild(el('h3','','À examiner (propriétaire, test)'));if(!q.length)box.appendChild(el('p','','Aucun catalogue en attente.'));q.forEach(function(c){box.appendChild(mcRow(c,true))})}
 box.appendChild(el('h3','','Mes catalogues'));if(!mine.length){box.appendChild(el('p','','Tu n’as pas encore créé de catalogue.'));return}
 mine.slice().reverse().forEach(function(c){box.appendChild(mcRow(c,false))})}
 function mcRow(c,rev){var d=el('div','pf2'),t=document.createElement('img'),x=el('div','mtx'),s=el('p','pm');t.className='mth';t.src=c.img;t.alt='';d.appendChild(t);x.appendChild(el('b','',c.n));x.appendChild(el('span','mtag',c.t));
 if(c.st==='examen')s.textContent='En examen';else if(c.st==='rejete')s.textContent='Rejeté : '+(c.why||'critère non respecté')+'. Tu peux corriger et envoyer un nouveau catalogue.';else if(mcShow(c))s.textContent='Publié dans le MACHE';else{s.appendChild(document.createTextNode('Validé · visible dans le MACHE dans '));var sp=el('span','mccd',fmt3(c.vAt+MCW-Date.now()));sp.setAttribute('data-t',String(c.vAt+MCW));s.appendChild(sp)}
 x.appendChild(s);
 if(rev){x.appendChild(el('p','pm','Commerçant : '+c.m+' · WhatsApp : +509 '+String(c.w).replace(/(\d{2})(?=\d)/g,'$1 ')));var sel=document.createElement('select');sel.setAttribute('aria-label','Motif de rejet');MCR.forEach(function(r,i){var o=document.createElement('option');o.value=r[0];o.textContent='Rejet : '+(i+1)+'. '+r[0];sel.appendChild(o)});x.appendChild(sel);
-var bo=el('button','mini','Valider le catalogue'),br=el('button','mini','Rejeter le catalogue');bo.type='button';br.type='button';bo.onclick=function(){mcSet(c.id,function(k){k.st='valide';k.vAt=Date.now()});mcDraw()};br.onclick=function(){mcSet(c.id,function(k){k.st='rejete';k.why=sel.value});mcDraw()};var rw=el('div','row');rw.appendChild(bo);rw.appendChild(br);x.appendChild(rw)}
+var bo=el('button','mini','Valider (test)'),br=el('button','mini','Rejeter (test)');bo.type='button';br.type='button';bo.onclick=function(){mcSet(c.id,function(k){k.st='valide';k.vAt=Date.now()});mcDraw()};br.onclick=function(){mcSet(c.id,function(k){k.st='rejete';k.why=sel.value});mcDraw()};var rw=el('div','row');rw.appendChild(bo);rw.appendChild(br);x.appendChild(rw)}
 else{var dl=el('button','link','Supprimer');dl.type='button';dl.onclick=function(){mcSave(mcAll().filter(function(k){return k.id!==c.id}));mcDraw()};x.appendChild(dl)}
 d.appendChild(x);return d}
+document.getElementById('tmache').setAttribute('aria-selected','true');
 mcCrit(document.getElementById('mcf'));mcDraw();
 setInterval(function(){var b=document.querySelectorAll('#mache .mccd');for(var i=0;i<b.length;i++){var l=+b[i].getAttribute('data-t')-Date.now();if(l<=0){mcDraw();return}b[i].textContent=fmt3(l)}},1000);
 function drawP(){var a=get()||{},box=document.getElementById('pfl'),c=el('div','quiz'),top=el('div','ptop'),A=accts(),p=getP(),dn=(a.dob||'').split('-').reverse().join('/'),tl=a.tel?'+509 '+a.tel.replace(/(\d{2})(?=\d)/g,'$1 '):'',act=D.act&&D.act.st==='valide'?'Activé':(D.act&&D.act.st==='attente'?'En attente':'Non demandé');box.textContent='';
@@ -1122,19 +1115,20 @@ drawP();
 var RTX='';
 function regMail(a){var dn=(a.dob||'').split('-').reverse().join('/'),L=['Nouvelle inscription DRACHWIN','Nom : '+a.nom,'Prénom : '+a.prenom,'Date de naissance : '+dn,'E-mail : '+a.email,'Téléphone : '+a.tel,'Statut : '+a.st+(a.et?' ('+a.et+')':''),'Code de parrainage utilisé : '+(a.ref||'aucun'),'Code du membre : '+mycode()];RTX=L.join('\n');return 'mailto:drachwin2@gmail.com?subject='+encodeURIComponent('Nouvelle inscription DRACHWIN – '+a.prenom+' '+a.nom)+'&body='+encodeURIComponent(L.join('\n'))}
 function sendNet(a){var d={'form-name':'inscription',nom:a.nom,prenom:a.prenom,naissance:a.dob,email:a.email,telephone:a.tel,statut:a.st,etablissement:a.et||'',code_parrainage:a.ref||'',code_membre:mycode(),date:new Date().toLocaleString('fr-FR')},b=Object.keys(d).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(d[k])}).join('&');return fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:b}).then(function(x){if(!x.ok)throw 0})}
-function showReg(a){f.hidden=true;document.getElementById('reg2').hidden=false;var r=document.getElementById('rmail'),g=document.getElementById('rgo'),cb=document.getElementById('rcpy'),st=document.getElementById('rcm');r.href=regMail(a);busy(g,true);r.hidden=true;cb.hidden=true;st.textContent='Envoi de ton inscription…';try{sendNet(a).then(function(){st.textContent="✓ Inscription envoyée à l'équipe.";busy(g,false)}).catch(function(){r.hidden=false;cb.hidden=false;st.textContent='Envoi automatique impossible. Envoie ton inscription par e-mail ou copie-la.';busy(g,false)})}catch(x){r.hidden=false;cb.hidden=false;st.textContent='Envoi automatique impossible. Envoie ton inscription par e-mail ou copie-la.';busy(g,false)}r.onclick=function(){g.disabled=false};document.getElementById('rcpy').onclick=function(){cp(RTX,document.getElementById('rcm'));g.disabled=false};g.onclick=function(){try{localStorage.setItem('drachwin_session','1')}catch(x){}beat();location.reload()};window.scrollTo(0,0)}
+function showReg(a){f.hidden=true;document.getElementById('reg2').hidden=false;var r=document.getElementById('rmail'),g=document.getElementById('rgo'),cb=document.getElementById('rcpy'),st=document.getElementById('rcm');r.href=regMail(a);g.disabled=true;r.hidden=true;cb.hidden=true;st.textContent='Envoi de ton inscription…';try{sendNet(a).then(function(){st.textContent="✓ Inscription envoyée à l'équipe.";g.disabled=false}).catch(function(){r.hidden=false;cb.hidden=false;st.textContent='Envoi automatique impossible. Envoie ton inscription par e-mail ou copie-la.'})}catch(x){r.hidden=false;cb.hidden=false;st.textContent='Envoi automatique impossible. Envoie ton inscription par e-mail ou copie-la.'}r.onclick=function(){g.disabled=false};document.getElementById('rcpy').onclick=function(){cp(RTX,document.getElementById('rcm'));g.disabled=false};g.onclick=function(){try{localStorage.setItem('drachwin_session','1')}catch(x){}beat();location.reload()};window.scrollTo(0,0)}
 document.getElementById('st').onchange=function(){var v=this.value;document.getElementById('le').hidden=!(v==='Élève'||v==='Étudiant')};
 function beat(){try{localStorage.setItem('drachwin_seen',String(Date.now()))}catch(e){}}
 function stale(){try{var sn=+localStorage.getItem('drachwin_seen')||0;return sn>0&&Date.now()-sn>18e5}catch(e){return false}}
 function softOut(){try{localStorage.removeItem('drachwin_session')}catch(e){}actEl.hidden=true;site.hidden=true;choose.hidden=true;document.getElementById('reg2').hidden=true;f.hidden=true;choice.hidden=false;gate.hidden=false;window.scrollTo(0,0)}
 document.addEventListener('visibilitychange',function(){if(document.hidden)beat();else if(stale())softOut();else beat()});
 window.addEventListener('pagehide',beat);setInterval(function(){if(!document.hidden)beat()},15000);
-// MACHE est accessible directement : aucun compte à rebours ni verrou d'ouverture.
-document.getElementById('sell').classList.remove('locked');
+var SELL_OPEN=0; // MACHE est accessible; les contrôles d’âge et d’activation restent actifs.
+function sellTick(){var l=SELL_OPEN-Date.now(),lk=l>0;document.getElementById('sell').classList.toggle('locked',lk);['tsell','nsell'].forEach(function(i){var e=document.getElementById(i);if(e)e.classList.toggle('lockedtile',lk)});if(lk){var counter=document.getElementById('slc');if(counter)counter.textContent='Ouverture dans '+fmt(l)}}
+sellTick();setInterval(sellTick,1000);
 var m=get(),ss=null;try{ss=localStorage.getItem('drachwin_session')}catch(e){}if(ss&&stale()){try{localStorage.removeItem('drachwin_session')}catch(e){}ss=null}beat();chkAdm();
 /* Auth guard: a localStorage flag alone must never open the member area. */
-if(supabaseClient){supabaseClient.auth.getSession().then(async function(res){var session=res&&res.data&&res.data.session;if(window.__REC){showRec();return}if(!session){try{localStorage.removeItem('drachwin_session')}catch(e){}return}var u=session.user;await loadSecureMember(u);var meta=u.user_metadata||{},email=(u.email||'').toLowerCase(),A=accts(),profile=A[email]||{nom:meta.nom||'',prenom:meta.prenom||'',dob:meta.dob||'',email:email,tel:meta.tel||'',st:meta.st||'',et:meta.et||'',ref:meta.ref||''};profile.myReferralCode=secureReferralCode;if(profile.prenom){set(profile);show(profile);drawR();drawW()}}).catch(function(){try{localStorage.removeItem('drachwin_session')}catch(e){}})}
-function setMode(x){mode=x;f.hidden=false;choice.hidden=true;document.getElementById('ft').textContent=x==='in'?"Créer mon compte":"Me connecter";document.getElementById('lp').hidden=x!=='in';document.getElementById('lr').hidden=x!=='in';document.getElementById('passrow').firstChild.textContent=x==='in'?'Mot de passe (8 caractères minimum)':'Mot de passe';document.getElementById('password').setAttribute('autocomplete',x==='in'?'new-password':'current-password');document.getElementById('go').textContent=x==='in'?"S'inscrire":"Se connecter";document.getElementById('err').textContent='';document.getElementById('forgot').hidden=x!=='log';if(x==='log'){var ce=curEmail();if(ce&&!document.getElementById('email').value)document.getElementById('email').value=ce}document.getElementById(x==='in'?'nom':'email').focus()}
+if(supabaseClient){supabaseClient.auth.getSession().then(async function(res){var session=res&&res.data&&res.data.session;if(!session){try{localStorage.removeItem('drachwin_session')}catch(e){}return}var u=session.user;await loadSecureMember(u);var meta=u.user_metadata||{},email=(u.email||'').toLowerCase(),A=accts(),profile=A[email]||{nom:meta.nom||'',prenom:meta.prenom||'',dob:meta.dob||'',email:email,tel:meta.tel||'',st:meta.st||'',et:meta.et||'',ref:meta.ref||''};profile.myReferralCode=secureReferralCode;if(profile.prenom){set(profile);show(profile);drawR();drawW()}}).catch(function(){try{localStorage.removeItem('drachwin_session')}catch(e){}})}
+function setMode(x){mode=x;f.hidden=false;choice.hidden=true;document.getElementById('ft').textContent=x==='in'?"Créer mon compte":"Me connecter";document.getElementById('lp').hidden=x!=='in';document.getElementById('lr').hidden=x!=='in';document.getElementById('passrow').firstChild.textContent=x==='in'?'Mot de passe (8 caractères minimum)':'Mot de passe';document.getElementById('password').setAttribute('autocomplete',x==='in'?'new-password':'current-password');document.getElementById('go').textContent=x==='in'?"S'inscrire":"Se connecter";document.getElementById('err').textContent='';if(x==='log'){var ce=curEmail();if(ce&&!document.getElementById('email').value)document.getElementById('email').value=ce}document.getElementById(x==='in'?'nom':'email').focus()}
 Array.prototype.forEach.call(document.querySelectorAll('nav.app-bottom-nav a[data-switch]'),function(a){a.addEventListener('click',function(){var target=a.getAttribute('data-switch');if(target==='free'||target==='win'){try{localStorage.setItem('drachwin_prog',target)}catch(e){}apply(target)}})});
 Array.prototype.forEach.call(document.querySelectorAll('[data-theme-toggle]'),function(b){b.addEventListener('click',function(){applyDrachwinTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')})});
 document.getElementById('b-in').onclick=function(){setMode('in')};
@@ -1143,7 +1137,7 @@ document.getElementById('dob').onchange=function(){var a=age(this.value);documen
 document.getElementById('back').onclick=function(){f.reset();f.hidden=true;choice.hidden=false};
 var cs=document.querySelectorAll('.pick');for(var k=0;k<cs.length;k++)cs[k].onclick=function(){pick(this.getAttribute('data-p'))};
 document.getElementById('chg').onclick=function(){try{localStorage.removeItem('drachwin_prog')}catch(e){}site.hidden=true;choose.hidden=false;window.scrollTo(0,0)};
-f.onsubmit=async function(e){e.preventDefault();var g=function(i){return document.getElementById(i).value.trim()},em=g('email').toLowerCase(),pwd=document.getElementById('password').value,err=document.getElementById('err');err.textContent='';if(!supabaseClient){err.textContent='Connexion Supabase non configurée : ajoute la clé publishable dans le code avant de publier.';return}if(pwd.length<8){err.textContent='Le mot de passe doit contenir au moins 8 caractères.';return}var goBtn=document.getElementById('go');busy(goBtn,true);try{
+f.onsubmit=async function(e){e.preventDefault();var g=function(i){return document.getElementById(i).value.trim()},em=g('email').toLowerCase(),pwd=document.getElementById('password').value,err=document.getElementById('err');err.textContent='';if(!supabaseClient){err.textContent='Connexion Supabase non configurée : ajoute la clé publishable dans le code avant de publier.';return}if(pwd.length<8){err.textContent='Le mot de passe doit contenir au moins 8 caractères.';return}document.getElementById('go').disabled=true;try{
 if(mode==='in'){var nom=g('nom'),pre=g('prenom'),dob=g('dob'),tel=g('tel'),stt=g('st'),et=g('etab'),sc=(stt==='Élève'||stt==='Étudiant');
 if(!nom||!pre){err.textContent='Entre ton nom et ton prénom.';return}
 if(age(dob)<18){err.textContent=dob?"L'inscription est réservée aux personnes de 18 ans et plus.":'Entre ta date de naissance.';return}
@@ -1153,21 +1147,8 @@ if(!stt){err.textContent='Dis-nous qui tu es : élève, étudiant, enseignant…
 if(sc&&!et){err.textContent="Indique le nom de ton établissement.";return}
 var mm={nom:nom,prenom:pre,dob:dob,email:em,tel:tel.replace(/\D/g,'').slice(-8),st:stt,et:sc?et:'',ref:(g('rc')||'').toUpperCase().replace(/[^A-Z0-9-]/g,'')};var sr=await supabaseClient.auth.signUp({email:em,password:pwd,options:{emailRedirectTo:location.origin, data:{nom:nom,prenom:pre,dob:dob,tel:mm.tel,st:stt,et:sc?et:'',ref:mm.ref}}});if(sr.error){err.textContent=sr.error.message;return}if(!sr.data.session){err.textContent='Compte créé. Vérifie ta boîte e-mail et confirme ton adresse avant de te connecter. Aucun accès membre ne sera accordé avant confirmation.';f.reset();return}await loadSecureMember(sr.data.user);mm.myReferralCode=secureReferralCode;set(mm);showReg(mm)}
 else{var lr=await supabaseClient.auth.signInWithPassword({email:em,password:pwd});if(lr.error){err.textContent='Connexion impossible : '+lr.error.message;return}var A=accts(),u=lr.data.user,meta=u.user_metadata||{},profile=A[em]||{nom:meta.nom||'',prenom:meta.prenom||'',dob:meta.dob||'',email:em,tel:meta.tel||'',st:meta.st||'',et:meta.et||'',ref:meta.ref||''};if(profile.dob&&age(profile.dob)<18){await supabaseClient.auth.signOut();err.textContent="DRACHWIN est réservé aux personnes de 18 ans et plus.";return}await loadSecureMember(u);profile.myReferralCode=secureReferralCode;set(profile);try{localStorage.setItem('drachwin_cur',em);localStorage.setItem('drachwin_session','1')}catch(x){}beat();location.reload()}
-}catch(ex){err.textContent='Erreur : '+(ex&&ex.message?ex.message:'réessaie dans un instant.')}finally{busy(goBtn,false)}};
+}catch(ex){err.textContent='Erreur : '+(ex&&ex.message?ex.message:'réessaie dans un instant.')}finally{document.getElementById('go').disabled=false}};
 async function bye(){try{if(supabaseClient)await supabaseClient.auth.signOut()}catch(e){}try{localStorage.removeItem('drachwin_session');localStorage.removeItem('drachwin_prog')}catch(e){}actEl.hidden=true;f.reset();f.hidden=true;document.getElementById('reg2').hidden=true;choice.hidden=false;site.hidden=true;gate.hidden=false;choose.hidden=true;window.scrollTo(0,0)}document.getElementById('out').onclick=bye;document.getElementById('out2').onclick=bye;
-
-function busy(b,on){b.disabled=!!on;b.classList.toggle('busy',!!on)}
-function showRec(){site.hidden=true;choose.hidden=true;actEl.hidden=true;gate.hidden=false;choice.hidden=true;f.hidden=true;document.getElementById('npf').hidden=false;window.scrollTo(0,0)}
-document.getElementById('forgot').onclick=async function(){var b=this,err=document.getElementById('err'),em=document.getElementById('email').value.trim().toLowerCase();err.textContent='';
-if(!supabaseClient){err.textContent='Connexion Supabase non configurée.';return}
-if(!em){err.textContent="Entre ton adresse e-mail ci-dessus, puis touche « Mot de passe oublié ? ».";return}
-busy(b,true);try{var r=await supabaseClient.auth.resetPasswordForEmail(em,{redirectTo:location.origin});err.textContent=r.error?r.error.message:"Si ce compte existe, un e-mail de réinitialisation vient d’être envoyé. Ouvre le lien reçu pour choisir un nouveau mot de passe."}catch(x){err.textContent='Erreur : réessaie dans un instant.'}finally{busy(b,false)}};
-document.getElementById('npf').onsubmit=async function(e){e.preventDefault();var m=document.getElementById('npm'),a=document.getElementById('np1').value,c=document.getElementById('np2').value,b=document.getElementById('npgo');m.textContent='';
-if(a.length<8){m.textContent='Le mot de passe doit contenir au moins 8 caractères.';return}
-if(a!==c){m.textContent='Les deux mots de passe ne sont pas identiques.';return}
-busy(b,true);try{var r=await supabaseClient.auth.updateUser({password:a});if(r.error){m.textContent=r.error.message;return}
-await supabaseClient.auth.signOut();window.__REC=false;history.replaceState(null,'',location.pathname);this.reset();this.hidden=true;choice.hidden=false;document.getElementById('err').textContent='';alert('Mot de passe modifié. Connecte-toi avec ton nouveau mot de passe.')}catch(x){m.textContent='Erreur : réessaie dans un instant.'}finally{busy(b,false)}};
-if(supabaseClient){supabaseClient.auth.onAuthStateChange(function(ev){if(ev==='PASSWORD_RECOVERY'){window.__REC=true;showRec()}})}
 })();
 </script>
 </body>
